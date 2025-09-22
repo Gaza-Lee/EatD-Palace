@@ -12,23 +12,32 @@ export function Navbar() {
     <nav>
       <ul>
         <li>
-          <iconify-icon icon="guidance:home-2"></iconify-icon>
-          Home
+          <a href="/pages/home/home.html">
+            <iconify-icon icon="guidance:home-2"></iconify-icon>
+             <span>Home</span>
+          </a>
         </li>
         <li>
+          <a href="/pages/menu/menu.html">
             <iconify-icon icon="fluent:food-16-regular"></iconify-icon>
-            Menu
+            <span>Menu</span>
+          </a>
         </li>
         <li>
+          <a href="/pages/about/about.html">
             <iconify-icon icon="cil:info"></iconify-icon>
-            About us
+             <span>About us</span>
+          </a>
         </li>
         <li>
+          <a href="/pages/reservation/reservation.html">
             <iconify-icon icon="fluent-mdl2:reservation-orders"></iconify-icon>
-            Reservation
+             <span>Reservation</span>
+          </a>
         </li>
       </ul>
     </nav>
+
 
     <!--Essentials-->
     <section class="essentials">
