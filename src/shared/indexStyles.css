@@ -10,11 +10,13 @@
 
 body {
     background-color: rgb(255, 252, 241);
+    color: white;
 }
 
 /* Navbar container */
 #nav-bar {
-    margin: 1rem 2em;
+    top: 0;
+    margin:1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,6 +48,20 @@ nav ul {
     align-items: center;
     gap: 1.5rem;
     list-style: none;
+}
+
+nav li a.active {
+  color: #ff6600;
+  font-weight: 600;
+  transform: scale(1.2);
+}
+
+nav li a.active span::after {
+  width: 100%;
+}
+
+nav li a.active:hover {
+  transform: scale(1.1);
 }
 
 nav li a {

@@ -287,6 +287,43 @@ h1{
     letter-spacing: 2px;
 }
 
+#socials {
+    position: absolute;
+    right: 5rem;
+    top: 85%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    z-index: 10;
+    align-items: center;
+}
+
+#socials iconify-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: white;
+    font-size: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#socials > iconify-icon:last-child{
+  font-size: 3rem;
+  padding: 1.5rem;
+}
+
+#socials iconify-icon:hover {
+    transform: scale(1.2);
+    color: rgb(250, 170, 100);    
+}
+
 
 @keyframes rotate {
   to {

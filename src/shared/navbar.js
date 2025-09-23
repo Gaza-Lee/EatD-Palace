@@ -24,7 +24,7 @@ export function Navbar() {
           </a>
         </li>
         <li>
-          <a href="/pages/about/about.html">
+          <a href="/pages/aboutUs/aboutUs.html">
             <iconify-icon icon="cil:info"></iconify-icon>
              <span>About us</span>
           </a>
@@ -37,7 +37,6 @@ export function Navbar() {
         </li>
       </ul>
     </nav>
-
 
     <!--Essentials-->
     <section class="essentials">
@@ -55,6 +54,16 @@ export function Navbar() {
       </button>
     </section>
   `;
+
+  // Active path
+  const currentPath = window.location.pathname;
+  const navLinks = section.querySelectorAll('nav a');
+  
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
 
   return section;
 }

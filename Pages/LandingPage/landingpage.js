@@ -3,7 +3,7 @@
         const landingpageStyle = document.createElement("link");
         landingpageStyle.rel = "stylesheet";
         landingpageStyle.href = "/Pages/LandingPage/landingpage.css";
-        document.head.appendChild(landingpageStyle); //
+        document.head.appendChild(landingpageStyle);
     }
 })();
 
