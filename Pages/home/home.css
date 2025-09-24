@@ -83,7 +83,7 @@ body::before {
     padding: 2rem;
     text-align: center;
     backdrop-filter: blur(7px);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin-left: 1%;
     margin-right: 1%;
@@ -261,8 +261,8 @@ body::before {
 #chefs-special {
   padding: 2rem;
   text-align: center;
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin-left: 1%;
   margin-right: 1%;
@@ -285,7 +285,7 @@ body::before {
   height: 500px;
   overflow: hidden;
   border-radius: 20px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 192, 203, 0.1);
 }
 
 .chefs-track {
@@ -516,38 +516,393 @@ body::before {
   transform: scale(1);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .chefs-container {
-    height: 400px;
-  }
-  
-  .chefs-item.active .chefs-img-container {
-    width: 100%;
-    height: 60%;
-  }
-  
-  .chefs-item.active img {
-    border-radius: 20px 20px 0 0;
-  }
-  
-  .food-content {
+
+
+/*==========Seasoanl special============*/
+/* Seasonal Section Styles */
+#seasonal-specials {
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(7px);
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 5rem 1% 0;
+    border-radius: 20px;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#seasonal-specials h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Book container */
+.book-container {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    height: 500px;
+    perspective: 2000px;
+    margin: 2rem auto;
+}
+
+.book {
     position: relative;
     width: 100%;
-    height: 40%;
-    padding: 1.5rem;
-    border-radius: 0 0 20px 20px;
-  }
-  
-  .food-content h4 {
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.book-page {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.left-page {
+    left: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transform-origin: right center;
+}
+
+.right-page {
+    right: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    transform-origin: left center;
+}
+
+/* Book content */
+.page-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.page-content {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.seasonal-name {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ff6600;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.seasonal-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.seasonal-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.seasonal-price {
+    color: #ff6600;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.seasonal-rating {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.seasonal-tags {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.season-tag {
+    background: rgba(255, 102, 0, 0.2);
+    color: #ff6600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 102, 0, 0.3);
+}
+
+.seasonal-order-btn {
+    background: linear-gradient(135deg, #ff6600, #e55c00);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-self: flex-start;
+}
+
+.seasonal-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+    background: linear-gradient(135deg, #ff7700, #ff5500);
+}
+
+/* Book navigation */
+.book-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    pointer-events: none;
+    padding: 0 1rem;
+}
+
+.book-nav button {
+    pointer-events: all;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     font-size: 1.5rem;
-  }
-  
-  .food-content p {
-    display: none;
-  }
-  
-  .chefs-item.next {
-    width: 30%;
-  }
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.book-nav button:hover {
+    background: #ff6600;
+    border-color: #ff6600;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+}
+
+.book-nav button:active {
+    transform: scale(1);
+}
+
+/* Page indicators */
+.page-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.page-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.page-indicator.active {
+    background: #ff6600;
+    transform: scale(1.2);
+}
+
+/* Book spine effect */
+.book::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+    transform: translateX(-50%);
+    z-index: 5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for page turning */
+@keyframes pageTurn {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(-10deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.book.turning {
+    animation: pageTurn 1s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #seasonal-specials {
+        padding: 1rem;
+        margin: 3rem 1% 0;
+    }
+    
+    .book-container {
+        height: 400px;
+    }
+    
+    .page-content {
+        padding: 1rem;
+    }
+    
+    .seasonal-name {
+        font-size: 1.5rem;
+    }
+    
+    .seasonal-description {
+        font-size: 0.9rem;
+    }
+    
+    .seasonal-details {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .seasonal-tags {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .seasonal-order-btn {
+        align-self: center;
+        padding: 0.6rem 1.5rem;
+    }
+    
+    .book-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .book-container {
+        height: 350px;
+    }
+    
+    .page-content {
+        padding: 0.5rem;
+    }
+    
+    .seasonal-name {
+        font-size: 1.3rem;
+    }
+    
+    .seasonal-description {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .seasonal-details {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .seasonal-price, .seasonal-rating {
+        font-size: 1rem;
+    }
+}
+
+/* Enhanced hover effects */
+.book-page {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-page:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.left-page:hover {
+    transform: translateX(-5px) rotateY(-5deg);
+}
+
+.right-page:hover {
+    transform: translateX(5px) rotateY(5deg);
+}
+
+/* Loading state */
+.book-page.loading {
+    background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Focus states for accessibility */
+.book-nav button:focus,
+.seasonal-order-btn:focus,
+.page-indicator:focus {
+    outline: 2px solid #ff6600;
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .book {
+        transition: none;
+    }
+    
+    .book.turning {
+        animation: none;
+    }
+    
+    .book-nav button,
+    .seasonal-order-btn {
+        transition: none;
+    }
+    
+    .page-indicator {
+        transition: none;
+    }
 }
