@@ -9,6 +9,14 @@ body {
     position: relative;
 }
 
+body > section{
+    margin-bottom: 5rem;
+}
+
+section:last-of-type{
+    margin-bottom: 1rem;
+}
+
 body::before {
     content: "";
     position: fixed;
@@ -75,9 +83,10 @@ body::before {
     padding: 2rem;
     text-align: center;
     backdrop-filter: blur(7px);
-    
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 1% 2%;
+    margin-left: 1%;
+    margin-right: 1%;
     border-radius: 20px;
 }
 
@@ -246,4 +255,299 @@ body::before {
     white-space: nowrap;
     margin: 0;
     padding: 0;
+}
+
+/*chef's special */
+#chefs-special {
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: 1%;
+  margin-right: 1%;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+#chefs-special h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.chefs-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.chefs-track {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.chefs-item {
+  position: absolute;
+  height: 100%;
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Hidden items */
+.chefs-item.hidden {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Image container for consistent sizing */
+.chefs-img-container {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Active item (80% width on left) */
+.chefs-item.active {
+  z-index: 3;
+  width: 80%;
+  left: 0;
+  opacity: 1;
+}
+
+.chefs-item.active .chefs-img-container {
+  width: 50%;
+  height: 100%;
+}
+
+.chefs-item.active img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px 0 0 20px;
+  box-shadow: 
+    inset 0 0 0 4px rgba(255, 102, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  filter: brightness(1);
+  transition: transform 0.3s ease;
+}
+
+.chefs-item.active:hover img {
+  transform: scale(1.05);
+}
+
+/* Next item (20% width on right) */
+.chefs-item.next {
+  width: 20%;
+  right: 0;
+  left: auto;
+  z-index: 2;
+  opacity: 1;
+  justify-content: flex-end;
+}
+
+.chefs-item.next .chefs-img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chefs-item.next img {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  clip-path: circle(50% at center);
+  filter: brightness(0.7) blur(0.5px);
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.2),
+    0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+.chefs-item.next:hover img {
+  filter: brightness(0.85) blur(0);
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 0 4px rgba(255, 102, 0, 0.4),
+    0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Food content styling */
+.food-content {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.9) 0%, 
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  backdrop-filter: blur(8px);
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.chefs-item.active .food-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.chefs-item:not(.active) .food-content {
+  opacity: 0;
+  transform: translateX(20px);
+  pointer-events: none;
+}
+
+.food-content h4 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #ff6600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.food-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.food-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.order-btn {
+  background: linear-gradient(135deg, #ff6600, #e55c00);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+  background: linear-gradient(135deg, #ff7700, #ff5500);
+}
+
+.order-btn:active {
+  transform: translateY(0);
+}
+
+/* Navigation buttons */
+.chefs-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 4;
+  pointer-events: none;
+  padding: 0 1rem;
+}
+
+.chefs-nav button {
+  pointer-events: all;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chefs-nav button:hover {
+  background: #ff6600;
+  border-color: #ff6600;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+}
+
+.chefs-nav button:active {
+  transform: scale(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chefs-container {
+    height: 400px;
+  }
+  
+  .chefs-item.active .chefs-img-container {
+    width: 100%;
+    height: 60%;
+  }
+  
+  .chefs-item.active img {
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .food-content {
+    position: relative;
+    width: 100%;
+    height: 40%;
+    padding: 1.5rem;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .food-content h4 {
+    font-size: 1.5rem;
+  }
+  
+  .food-content p {
+    display: none;
+  }
+  
+  .chefs-item.next {
+    width: 30%;
+  }
 }
