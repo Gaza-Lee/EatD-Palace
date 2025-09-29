@@ -1,0 +1,30 @@
+body{
+    background: url(/src/assets/bgimg4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+body > section{
+    margin: 1rem;
+}
+
+.menu-nav li{
+    display: flex;
+    gap: 0.5rem;
+}
+
+#main-dishes{
+    align-content: center;
+}

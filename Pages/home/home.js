@@ -1805,14 +1805,12 @@ class DiscountedSlider {
   }
 }
 
-// Update the DOMContentLoaded event to include the new slider
+//Initialization
 document.addEventListener("DOMContentLoaded", () => {
   // Render recommendations with animation
   if (typeof recommendationAnimator !== 'undefined' && typeof recommendedFoods !== 'undefined') {
     recommendationAnimator.renderRecommendations(recommendedFoods);
   }
-
-  // Your existing initializations
   if (typeof CarouselManager !== 'undefined' && typeof popularFoods !== 'undefined') {
     new CarouselManager(popularFoods);
   }
@@ -1822,28 +1820,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof SeasonalBookManager !== 'undefined' && typeof seasonalSpecials !== 'undefined') {
     new SeasonalBookManager(seasonalSpecials);
   }
-  
-  // Initialize the new discounted slider
   if (typeof DiscountedSlider !== 'undefined' && typeof discounted !== 'undefined' && discounted.length > 0) {
-    new DiscountedSlider(discounted);
-  }
-});
-
-//DOM initialization
-document.addEventListener("DOMContentLoaded", () => {
-  // Render recommendations with animation
-  recommendationAnimator.renderRecommendations(recommendedFoods);
-  if (typeof CarouselManager !== 'undefined') {
-    new CarouselManager(popularFoods);
-  }
-  if (typeof ChefsSpecialManager !== 'undefined') {
-    new ChefsSpecialManager(chefsSpecials);
-  }
-  if (typeof SeasonalBookManager !== 'undefined') {
-    new SeasonalBookManager(seasonalSpecials);
-  }
-  
-  if (typeof DiscountedSlider !== 'undefined' && discounted.length > 0) {
     new DiscountedSlider(discounted);
   }
 });

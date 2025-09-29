@@ -1,55 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(255, 252, 241);
-    color: white;
+  background-color: rgb(255, 252, 241);
+  color: white;
 }
 
 /* Navbar container */
 #nav-bar {
-    position: sticky;
-    top: 1rem;
-    margin:1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10000;
+  position: sticky;
+  top: 1rem;
+  margin: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
 }
 
 /* Logo */
 #nav-bar img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 10rem;
 }
 
 /* Logo + name container */
 .name-and-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .name-and-logo p {
-    font-size: 2em;
-    font-weight: 600;
-    font-family: "Finlandica", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  font-family: "Finlandica", sans-serif;
 }
 
 /* Navigation */
 nav ul {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
 }
 
 nav li a.active {
@@ -67,72 +67,116 @@ nav li a.active:hover {
 }
 
 nav li a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 /* Custom underline */
 nav li a span {
-    position: relative;
+  position: relative;
 }
 
 nav li a span::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 3px;
-    background: #ff6600;
-    border-radius: 10rem;
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 3px;
+  background: #ff6600;
+  border-radius: 10rem;
+  transition: width 0.3s ease;
 }
 
 nav li a:hover span::after {
-    width: 100%;
+  width: 100%;
 }
 
 /* Hover effects */
 nav li a:hover {
-    color: #ff6600;
-    transform: scale(1.1);
-    font-weight: 600;
+  color: #ff6600;
+  transform: scale(1.1);
+  font-weight: 600;
 }
 
 /* Essentials section (search + buttons) */
 .essentials {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 input[type="search"] {
-    border-radius: 1rem;
-    padding: 0.5rem 2rem;
-    border: solid gray 1px;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  border: solid gray 1px;
 }
 
 .essentials button {
-    padding: 0.5rem;
-    border-radius: 2rem;
-    border: solid gray 0.5px;
-    cursor: pointer;
-    background: white;
-    transition: background 1s ease, transform 0.5s ease;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: solid gray 0.5px;
+  cursor: pointer;
+  background: white;
+  transition: background 1s ease, transform 0.5s ease;
 }
 
 .essentials button:hover {
-    background: #ffe5cc;
-    border: solid rgb(250,170,100) 3px;
-    transform: scale(1.2);
+  background: #ffe5cc;
+  border: solid rgb(250, 170, 100) 3px;
+  transform: scale(1.2);
 }
 
 /* Icons inside nav */
 nav iconify-icon {
-    font-size: 24px;
-    vertical-align: middle;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+/*Uniform pages Nav*/
+.home-nav,
+.menu-nav {
+  margin: auto;
+  position: sticky;
+  top: 3.5rem;
+  z-index: 10000;
+  margin: auto 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
+  padding: 0.5rem 1rem;
+  transition: background 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.home-nav li,
+.menu-nav li {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  transition: background 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.home-nav li:hover,
+.menu-nav li:hover {
+  transform: scale(1.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: #ff6600;
+}
+
+.home-nav a:hover,
+.menu-nav a:hover {
+  transform: scale(1) !important;
+  color: white;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
 }
