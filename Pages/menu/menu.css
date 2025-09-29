@@ -1,30 +1,194 @@
-body{
-    background: url(/src/assets/bgimg4.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
+body {
+  background: url(/src/assets/bgimg4.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-body::before{
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    pointer-events: none;
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 }
 
-body > section{
-    margin: 1rem;
+body > section {
+  margin: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.menu-nav li{
+#main-dishes h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.menu-nav li {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.menu-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.food-card {
+  flex: 1 1 calc(25% - 1rem);
+  min-width: 220px;
+  max-width: 280px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.image-and-btns {
+  position: relative;
+}
+
+.image-and-btns img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px 12px 0 0;
+}
+
+.food-actions {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 12px 12px;
+  margin: 0 1rem;
+}
+
+.food-actions button {
+  border: none;
+  padding: 0 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+  background: #ff6600;
+  color: #fff;
+  font-weight: 600;
+}
+
+.food-actions iconify-icon {
+  font-size: 2rem;
+}
+
+.food-actions button:hover {
+  background: #cc5302;
+}
+
+.food-actions button:active {
+  background: #fd6d0d;
+}
+
+.food-meta,
+.food-description {
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.food-details {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.2rem;
+  border-radius: 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden; /* Add this */
+}
+
+.price {
+  color: #ff6600;
+  font-weight: 600;
+  font-size: 1.5rem !important;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.rating {
+  color: #ffd700;
+  font-size: inherit !important;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Add this */
+  text-overflow: ellipsis; /* Add this */
+  min-width: 0; /* Allow shrinking */
+}
+
+.food-name {
+  color: #ff6600;
+  font-size: 1.5rem;
+}
+
+.food-description {
+  line-height: 1.4;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.view-controls{
     display: flex;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
-#main-dishes{
-    align-content: center;
+.view-more-btn,
+.view-less-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.view-less-btn:hover, .view-more-btn:hover {
+  background: #fd6d0d;
+  transform: scale(1.05);
+  color: white;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

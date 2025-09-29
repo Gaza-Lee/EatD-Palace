@@ -874,7 +874,6 @@ class SeasonalBookManager {
   }
 }
 
-
 class RecommendationAnimator {
   constructor() {
     this.container = document.querySelector(".user-recommendation");
@@ -888,19 +887,19 @@ class RecommendationAnimator {
 
   async renderRecommendations(foods) {
     if (!this.container) return;
-    
+
     this.foods = foods;
     this.currentIndex = 0;
-    
+
     // Create container structure
     this.createStructure();
-    
+
     // Display first item
     this.displayItem(0);
-    
+
     // Start auto-rotation
     this.startAutoRotate();
-    
+
     // Add navigation
     this.addNavigation();
   }
@@ -916,14 +915,20 @@ class RecommendationAnimator {
           <button class="rec-nav-next" aria-label="Next recommendation">❯</button>
         </div>
         <div class="recommendation-dots">
-          ${this.foods.map((_, index) => `
-            <span class="rec-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>
-          `).join('')}
+          ${this.foods
+            .map(
+              (_, index) => `
+            <span class="rec-dot ${
+              index === 0 ? "active" : ""
+            }" data-index="${index}"></span>
+          `
+            )
+            .join("")}
         </div>
       </div>
     `;
-    
-    this.slider = this.container.querySelector('.recommendation-slider');
+
+    this.slider = this.container.querySelector(".recommendation-slider");
   }
 
   createFoodHTML(food) {
@@ -966,44 +971,46 @@ class RecommendationAnimator {
   async displayItem(index) {
     const food = this.foods[index];
     if (!food) return;
-    
+
     const newContent = this.createFoodHTML(food);
-    const currentItem = this.slider.querySelector('.recommended-item');
-    
+    const currentItem = this.slider.querySelector(".recommended-item");
+
     if (currentItem) {
       // Animate out current item
-      currentItem.classList.add('slide-out');
-      
-      await new Promise(resolve => setTimeout(resolve, this.transitionDuration / 2));
-      
+      currentItem.classList.add("slide-out");
+
+      await new Promise((resolve) =>
+        setTimeout(resolve, this.transitionDuration / 2)
+      );
+
       // Replace content
       this.slider.innerHTML = newContent;
-      
+
       // Animate in new item
-      const newItem = this.slider.querySelector('.recommended-item');
-      newItem.classList.add('slide-in');
-      
+      const newItem = this.slider.querySelector(".recommended-item");
+      newItem.classList.add("slide-in");
+
       // Attach event listeners to new item
       this.attachItemEventListeners();
-      
+
       // Remove animation class after completion
       setTimeout(() => {
-        newItem.classList.remove('slide-in');
+        newItem.classList.remove("slide-in");
       }, this.transitionDuration);
     } else {
       // First load - no animation
       this.slider.innerHTML = newContent;
       this.attachItemEventListeners();
     }
-    
+
     // Update dots
     this.updateDots(index);
   }
 
   updateDots(activeIndex) {
-    const dots = this.container.querySelectorAll('.rec-dot');
+    const dots = this.container.querySelectorAll(".rec-dot");
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === activeIndex);
+      dot.classList.toggle("active", index === activeIndex);
     });
   }
 
@@ -1013,7 +1020,8 @@ class RecommendationAnimator {
   }
 
   prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.foods.length) % this.foods.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this.foods.length) % this.foods.length;
     this.displayItem(this.currentIndex);
   }
 
@@ -1042,78 +1050,80 @@ class RecommendationAnimator {
 
   addNavigation() {
     // Previous/Next buttons
-    const prevBtn = this.container.querySelector('.rec-nav-prev');
-    const nextBtn = this.container.querySelector('.rec-nav-next');
-    
-    prevBtn?.addEventListener('click', () => {
+    const prevBtn = this.container.querySelector(".rec-nav-prev");
+    const nextBtn = this.container.querySelector(".rec-nav-next");
+
+    prevBtn?.addEventListener("click", () => {
       this.stopAutoRotate();
       this.prev();
       this.startAutoRotate();
     });
-    
-    nextBtn?.addEventListener('click', () => {
+
+    nextBtn?.addEventListener("click", () => {
       this.stopAutoRotate();
       this.next();
       this.startAutoRotate();
     });
-    
+
     // Dot navigation
-    const dots = this.container.querySelectorAll('.rec-dot');
+    const dots = this.container.querySelectorAll(".rec-dot");
     dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
+      dot.addEventListener("click", () => {
         this.stopAutoRotate();
         this.goToIndex(index);
         this.startAutoRotate();
       });
     });
-    
+
     // Pause on hover
-    this.container.addEventListener('mouseenter', () => {
+    this.container.addEventListener("mouseenter", () => {
       this.isPaused = true;
     });
-    
-    this.container.addEventListener('mouseleave', () => {
+
+    this.container.addEventListener("mouseleave", () => {
       this.isPaused = false;
     });
   }
 
   attachItemEventListeners() {
     // Agree button with particle effect
-    const agreeBtn = this.slider.querySelector('.agree-btn');
-    agreeBtn?.addEventListener('click', (e) => this.handleAgree(e));
+    const agreeBtn = this.slider.querySelector(".agree-btn");
+    agreeBtn?.addEventListener("click", (e) => this.handleAgree(e));
 
     // Order buttons
-    this.slider.querySelectorAll('.order-btn:not(.agree-btn)').forEach(btn => {
-      btn.addEventListener('click', (e) => this.handleOrder(e));
-    });
+    this.slider
+      .querySelectorAll(".order-btn:not(.agree-btn)")
+      .forEach((btn) => {
+        btn.addEventListener("click", (e) => this.handleOrder(e));
+      });
 
     // Image hover
-    const img = this.slider.querySelector('.food-image');
-    img?.addEventListener('mouseenter', (e) => this.handleImageHover(e));
+    const img = this.slider.querySelector(".food-image");
+    img?.addEventListener("mouseenter", (e) => this.handleImageHover(e));
   }
   handleAgree(e) {
     const btn = e.target;
     const foodId = btn.dataset.foodId;
-    const countElement = btn.parentElement.querySelector('.count-number');
+    const countElement = btn.parentElement.querySelector(".count-number");
     let currentCount = parseInt(countElement.textContent);
-    
+
     // Increment count with animation
     currentCount++;
     this.animateCountChange(countElement, currentCount);
-    
+
     // Create particle effect
     this.createParticles(e);
-    
+
     // Pulse animation
-    btn.style.transform = 'scale(0.95)';
+    btn.style.transform = "scale(0.95)";
     setTimeout(() => {
-      btn.style.transform = 'scale(1)';
+      btn.style.transform = "scale(1)";
     }, 200);
 
     // Disable button to prevent spam
     btn.disabled = true;
-    btn.textContent = 'Agreed!';
-    btn.style.background = 'linear-gradient(135deg, gold, #ffa500)';
+    btn.textContent = "Agreed!";
+    btn.style.background = "linear-gradient(135deg, gold, #ffa500)";
   }
 
   animateCountChange(element, newCount) {
@@ -1124,16 +1134,18 @@ class RecommendationAnimator {
     const updateCount = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
-      const currentCount = Math.floor(startCount + (newCount - startCount) * progress);
+
+      const currentCount = Math.floor(
+        startCount + (newCount - startCount) * progress
+      );
       element.textContent = currentCount;
-      
+
       if (progress < 1) {
         requestAnimationFrame(updateCount);
       } else {
-        element.style.animation = 'countUp 0.3s ease-out';
+        element.style.animation = "countUp 0.3s ease-out";
         setTimeout(() => {
-          element.style.animation = '';
+          element.style.animation = "";
         }, 300);
       }
     };
@@ -1147,16 +1159,16 @@ class RecommendationAnimator {
     const y = rect.top + rect.height / 2;
 
     for (let i = 0; i < 12; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = x + 'px';
-      particle.style.top = y + 'px';
-      
+      const particle = document.createElement("div");
+      particle.className = "particle";
+      particle.style.left = x + "px";
+      particle.style.top = y + "px";
+
       const angle = (i / 12) * Math.PI * 2;
       const velocity = 50 + Math.random() * 50;
-      particle.style.setProperty('--x', `${Math.cos(angle) * velocity}px`);
-      particle.style.setProperty('--y', `${Math.sin(angle) * velocity}px`);
-      
+      particle.style.setProperty("--x", `${Math.cos(angle) * velocity}px`);
+      particle.style.setProperty("--y", `${Math.sin(angle) * velocity}px`);
+
       document.body.appendChild(particle);
       setTimeout(() => particle.remove(), 1000);
     }
@@ -1165,32 +1177,35 @@ class RecommendationAnimator {
   handleOrder(e) {
     const btn = e.target;
     const foodId = btn.dataset.foodId;
-    
+
     // Ripple effect
-    const ripple = document.createElement('span');
-    ripple.style.position = 'absolute';
-    ripple.style.borderRadius = '50%';
-    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-        ripple.style.transform = 'translate(-50%, -50%)';
-    ripple.style.pointerEvents = 'none';
-    
+    const ripple = document.createElement("span");
+    ripple.style.position = "absolute";
+    ripple.style.borderRadius = "50%";
+    ripple.style.background = "rgba(255, 255, 255, 0.5)";
+    ripple.style.transform = "translate(-50%, -50%)";
+    ripple.style.pointerEvents = "none";
+
     const rect = btn.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = (e.clientX - rect.left) + 'px';
-    ripple.style.top = (e.clientY - rect.top) + 'px';
-    
-    btn.style.position = 'relative';
-    btn.style.overflow = 'hidden';
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = e.clientX - rect.left + "px";
+    ripple.style.top = e.clientY - rect.top + "px";
+
+    btn.style.position = "relative";
+    btn.style.overflow = "hidden";
     btn.appendChild(ripple);
-    
-    ripple.animate([
-      { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
-      { transform: 'translate(-50%, -50%) scale(4)', opacity: 0 }
-    ], {
-      duration: 600,
-      easing: 'ease-out'
-    }).onfinish = () => ripple.remove();
+
+    ripple.animate(
+      [
+        { transform: "translate(-50%, -50%) scale(0)", opacity: 1 },
+        { transform: "translate(-50%, -50%) scale(4)", opacity: 0 },
+      ],
+      {
+        duration: 600,
+        easing: "ease-out",
+      }
+    ).onfinish = () => ripple.remove();
 
     // Success feedback
     this.showOrderSuccess(foodId);
@@ -1198,20 +1213,24 @@ class RecommendationAnimator {
 
   handleImageHover(e) {
     const img = e.target;
-    img.style.transform = 'scale(1.05) rotate(2deg)';
-    
-    img.addEventListener('mouseleave', () => {
-      img.style.transform = 'scale(1) rotate(0deg)';
-    }, { once: true });
+    img.style.transform = "scale(1.05) rotate(2deg)";
+
+    img.addEventListener(
+      "mouseleave",
+      () => {
+        img.style.transform = "scale(1) rotate(0deg)";
+      },
+      { once: true }
+    );
   }
 
   showOrderSuccess(foodId) {
-    const food = this.currentData.find(f => f.id == foodId);
+    const food = this.currentData.find((f) => f.id == foodId);
     if (!food) return;
 
     // Create success notification
-    const notification = document.createElement('div');
-    notification.className = 'order-success-notification';
+    const notification = document.createElement("div");
+    notification.className = "order-success-notification";
     notification.innerHTML = `
       <div class="success-content">
         <span class="success-icon">✨</span>
@@ -1223,9 +1242,9 @@ class RecommendationAnimator {
     `;
 
     // Add notification styles if not exists
-    if (!document.querySelector('#notification-styles')) {
-      const styles = document.createElement('style');
-      styles.id = 'notification-styles';
+    if (!document.querySelector("#notification-styles")) {
+      const styles = document.createElement("style");
+      styles.id = "notification-styles";
       styles.textContent = `
         .order-success-notification {
           position: fixed;
@@ -1301,15 +1320,17 @@ class RecommendationAnimator {
   // Method to update data with smooth transition
   async updateRecommendations(newFoods) {
     // Fade out current items
-    const items = this.container.querySelectorAll('.recommended-item');
+    const items = this.container.querySelectorAll(".recommended-item");
     items.forEach((item, index) => {
       setTimeout(() => {
-        item.style.animation = 'fadeOutLeft 0.5s ease-out forwards';
+        item.style.animation = "fadeOutLeft 0.5s ease-out forwards";
       }, index * 50);
     });
 
     // Wait for fade out to complete
-    await new Promise(resolve => setTimeout(resolve, items.length * 50 + 500));
+    await new Promise((resolve) =>
+      setTimeout(resolve, items.length * 50 + 500)
+    );
 
     // Render new items
     await this.renderRecommendations(newFoods);
@@ -1332,7 +1353,8 @@ const recommendedFoods = [
       name: "Sarah K.",
       avatar: "/src/assets/person1.png",
       rating: "⭐⭐⭐⭐⭐",
-      comment: "This fufu is SO smooth, just like my grandma used to pound! Paired with that rich, aromatic chicken light soup? Pure comfort. Every spoonful feels like home. 10/10, no regrets. I'm ordering this weekly!"
+      comment:
+        "This fufu is SO smooth, just like my grandma used to pound! Paired with that rich, aromatic chicken light soup? Pure comfort. Every spoonful feels like home. 10/10, no regrets. I'm ordering this weekly!",
     },
   },
   {
@@ -1346,7 +1368,8 @@ const recommendedFoods = [
       name: "Kofi M.",
       avatar: "/src/assets/person2.png",
       rating: "⭐⭐⭐⭐⭐",
-      comment: "This jollof hits different! The smoky flavor, the perfect spice level, and those crispy bottom grains? Chef's kiss! Better than any party jollof I've had."
+      comment:
+        "This jollof hits different! The smoky flavor, the perfect spice level, and those crispy bottom grains? Chef's kiss! Better than any party jollof I've had.",
     },
   },
   {
@@ -1360,12 +1383,11 @@ const recommendedFoods = [
       name: "Ama D.",
       avatar: "/src/assets/person3.png",
       rating: "⭐⭐⭐⭐⭐",
-      comment: "Fresh tilapia grilled to perfection! The banku is soft and pairs beautifully with the spicy pepper sauce. This is how traditional food should taste!"
+      comment:
+        "Fresh tilapia grilled to perfection! The banku is soft and pairs beautifully with the spicy pepper sauce. This is how traditional food should taste!",
     },
-  }
+  },
 ];
-
-
 
 //Discounted data
 const discounted = [
@@ -1377,9 +1399,10 @@ const discounted = [
     priceNow: "GH₵ 200.90",
     rating: "5.0 ⭐ (200 reviews)",
     promo: {
-      title:"Wekend Special offer",
-      description: "Order this package on the wekend to enjoy exclusive discount",
-    }
+      title: "Wekend Special offer",
+      description:
+        "Order this package on the wekend to enjoy exclusive discount",
+    },
   },
   {
     id: 202,
@@ -1388,12 +1411,12 @@ const discounted = [
     originalPrice: "GH₵ 300.60",
     priceNow: "GH₵ 250.99",
     rating: "5.0 ⭐ (305 reviews)",
-    promo:{
+    promo: {
       title: "Deluxe costomers offer",
-      description: "Must be a costomer, enjoy this offer twice every month"
-    }
-  }
-]
+      description: "Must be a costomer, enjoy this offer twice every month",
+    },
+  },
+];
 
 // Discounted Section Manager
 // Discounted Section Manager
@@ -1405,21 +1428,21 @@ class DiscountedSlider {
     this.isTransitioning = false;
     this.autoPlayInterval = null;
     this.autoPlayDelay = 4000; // 4 seconds
-    
+
     this.init();
   }
-  
+
   init() {
     this.createContainer();
     this.renderCurrentItem();
     this.startAutoPlay();
     this.addEventListeners();
   }
-  
+
   createContainer() {
-    const section = document.getElementById('discounted');
+    const section = document.getElementById("discounted");
     if (!section) return;
-    
+
     // Create the slider structure
     const sliderHTML = `
       <div class="discount-slider-container">
@@ -1433,9 +1456,14 @@ class DiscountedSlider {
             </svg>
           </button>
           <div class="discount-indicators">
-            ${this.items.map((_, index) => 
-              `<span class="discount-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>`
-            ).join('')}
+            ${this.items
+              .map(
+                (_, index) =>
+                  `<span class="discount-dot ${
+                    index === 0 ? "active" : ""
+                  }" data-index="${index}"></span>`
+              )
+              .join("")}
           </div>
           <button class="discount-nav-btn discount-next" aria-label="Next item">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1445,18 +1473,21 @@ class DiscountedSlider {
         </div>
       </div>
     `;
-    
-    const contentDiv = section.querySelector('div');
+
+    const contentDiv = section.querySelector("div");
     contentDiv.innerHTML = sliderHTML;
-    
-    this.container = contentDiv.querySelector('.discount-slider-track');
+
+    this.container = contentDiv.querySelector(".discount-slider-track");
   }
-  
-  createItemHTML(item, className = '') {
-    const discount = Math.round(((parseFloat(item.originalPrice.replace(/[^0-9.]/g, '')) - 
-                                  parseFloat(item.priceNow.replace(/[^0-9.]/g, ''))) / 
-                                  parseFloat(item.originalPrice.replace(/[^0-9.]/g, ''))) * 100);
-    
+
+  createItemHTML(item, className = "") {
+    const discount = Math.round(
+      ((parseFloat(item.originalPrice.replace(/[^0-9.]/g, "")) -
+        parseFloat(item.priceNow.replace(/[^0-9.]/g, ""))) /
+        parseFloat(item.originalPrice.replace(/[^0-9.]/g, ""))) *
+        100
+    );
+
     return `
       <div class="discount-card ${className}">
         <div class="discount-badge">
@@ -1502,92 +1533,93 @@ class DiscountedSlider {
       </div>
     `;
   }
-  
+
   renderCurrentItem() {
     const currentItem = this.items[this.currentIndex];
-    this.container.innerHTML = this.createItemHTML(currentItem, 'active');
+    this.container.innerHTML = this.createItemHTML(currentItem, "active");
     this.startCountdown();
   }
-  
+
   async slideToNext() {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
-    
+
     const nextIndex = (this.currentIndex + 1) % this.items.length;
     const nextItem = this.items[nextIndex];
-    
+
     // Create next item element
-    const nextElement = document.createElement('div');
-    nextElement.innerHTML = this.createItemHTML(nextItem, 'entering');
+    const nextElement = document.createElement("div");
+    nextElement.innerHTML = this.createItemHTML(nextItem, "entering");
     const nextCard = nextElement.firstElementChild;
-    
+
     // Add next item to container
     this.container.appendChild(nextCard);
-    
+
     // Get current card
-    const currentCard = this.container.querySelector('.discount-card.active');
-    
+    const currentCard = this.container.querySelector(".discount-card.active");
+
     // Trigger animations
     requestAnimationFrame(() => {
-      currentCard.classList.add('exiting');
-      nextCard.classList.remove('entering');
-      nextCard.classList.add('active');
+      currentCard.classList.add("exiting");
+      nextCard.classList.remove("entering");
+      nextCard.classList.add("active");
     });
-    
+
     // Wait for animation to complete
-    await new Promise(resolve => setTimeout(resolve, 600));
-    
+    await new Promise((resolve) => setTimeout(resolve, 600));
+
     // Remove old card
     currentCard.remove();
-    
+
     // Update state
     this.currentIndex = nextIndex;
     this.updateIndicators();
     this.startCountdown();
     this.isTransitioning = false;
   }
-  
+
   async slideToPrev() {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
-    
-    const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+
+    const prevIndex =
+      (this.currentIndex - 1 + this.items.length) % this.items.length;
     const prevItem = this.items[prevIndex];
-    
+
     // Create previous item element
-    const prevElement = document.createElement('div');
-    prevElement.innerHTML = this.createItemHTML(prevItem, 'entering-reverse');
+    const prevElement = document.createElement("div");
+    prevElement.innerHTML = this.createItemHTML(prevItem, "entering-reverse");
     const prevCard = prevElement.firstElementChild;
-    
+
     // Add previous item to container
     this.container.appendChild(prevCard);
-    
+
     // Get current card
-    const currentCard = this.container.querySelector('.discount-card.active');
-    
+    const currentCard = this.container.querySelector(".discount-card.active");
+
     // Trigger animations
     requestAnimationFrame(() => {
-      currentCard.classList.add('exiting-reverse');
-      prevCard.classList.remove('entering-reverse');
-      prevCard.classList.add('active');
+      currentCard.classList.add("exiting-reverse");
+      prevCard.classList.remove("entering-reverse");
+      prevCard.classList.add("active");
     });
-    
+
     // Wait for animation to complete
-    await new Promise(resolve => setTimeout(resolve, 600));
-    
+    await new Promise((resolve) => setTimeout(resolve, 600));
+
     // Remove old card
     currentCard.remove();
-    
+
     // Update state
     this.currentIndex = prevIndex;
     this.updateIndicators();
     this.startCountdown();
     this.isTransitioning = false;
   }
-  
+
   async goToIndex(targetIndex) {
     if (this.isTransitioning || targetIndex === this.currentIndex) return;
-    
+
     // Determine direction
     if (targetIndex > this.currentIndex) {
       // Calculate how many slides to go forward
@@ -1596,7 +1628,7 @@ class DiscountedSlider {
         await this.slideToNext();
         // Small delay between multiple slides
         if (i < steps - 1) {
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise((resolve) => setTimeout(resolve, 100));
         }
       }
     } else {
@@ -1606,25 +1638,27 @@ class DiscountedSlider {
         await this.slideToPrev();
         // Small delay between multiple slides
         if (i < steps - 1) {
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise((resolve) => setTimeout(resolve, 100));
         }
       }
     }
   }
-  
+
   updateIndicators() {
-    const dots = document.querySelectorAll('.discount-dot');
+    const dots = document.querySelectorAll(".discount-dot");
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === this.currentIndex);
+      dot.classList.toggle("active", index === this.currentIndex);
     });
   }
-  
+
   startCountdown() {
-    const countdownElement = this.container.querySelector('.countdown');
+    const countdownElement = this.container.querySelector(".countdown");
     if (!countdownElement) return;
-    
-    let hours = 23, minutes = 59, seconds = 59;
-    
+
+    let hours = 23,
+      minutes = 59,
+      seconds = 59;
+
     const updateTimer = () => {
       seconds--;
       if (seconds < 0) {
@@ -1638,110 +1672,121 @@ class DiscountedSlider {
           }
         }
       }
-      
-      countdownElement.textContent = 
-        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      countdownElement.textContent = `${String(hours).padStart(
+        2,
+        "0"
+      )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+        2,
+        "0"
+      )}`;
     };
-    
+
     // Clear any existing interval
     if (this.countdownInterval) {
       clearInterval(this.countdownInterval);
     }
-    
+
     this.countdownInterval = setInterval(updateTimer, 1000);
   }
-  
+
   startAutoPlay() {
     this.stopAutoPlay();
     this.autoPlayInterval = setInterval(() => {
       this.slideToNext();
     }, this.autoPlayDelay);
   }
-  
+
   stopAutoPlay() {
     if (this.autoPlayInterval) {
       clearInterval(this.autoPlayInterval);
       this.autoPlayInterval = null;
     }
   }
-  
+
   addEventListeners() {
     // Get the parent container to ensure we're selecting from the right scope
-    const section = document.getElementById('discounted');
+    const section = document.getElementById("discounted");
     if (!section) return;
-    
+
     // Navigation buttons
-    const prevBtn = section.querySelector('.discount-prev');
-    const nextBtn = section.querySelector('.discount-next');
-    
+    const prevBtn = section.querySelector(".discount-prev");
+    const nextBtn = section.querySelector(".discount-next");
+
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener("click", () => {
         this.stopAutoPlay();
         this.slideToPrev();
         this.startAutoPlay();
       });
     }
-    
+
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener("click", () => {
         this.stopAutoPlay();
         this.slideToNext();
         this.startAutoPlay();
       });
     }
-    
+
     // Dot navigation
-    const dots = section.querySelectorAll('.discount-dot');
+    const dots = section.querySelectorAll(".discount-dot");
     dots.forEach((dot) => {
-      dot.addEventListener('click', (e) => {
+      dot.addEventListener("click", (e) => {
         const index = parseInt(e.target.dataset.index);
-        if (!isNaN(index) && index !== this.currentIndex && !this.isTransitioning) {
+        if (
+          !isNaN(index) &&
+          index !== this.currentIndex &&
+          !this.isTransitioning
+        ) {
           this.stopAutoPlay();
           this.goToIndex(index);
           this.startAutoPlay();
         }
       });
     });
-    
+
     // Pause on hover
-    this.container.addEventListener('mouseenter', () => {
+    this.container.addEventListener("mouseenter", () => {
       this.stopAutoPlay();
     });
-    
-    this.container.addEventListener('mouseleave', () => {
+
+    this.container.addEventListener("mouseleave", () => {
       this.startAutoPlay();
     });
-    
+
     // Order button clicks
-    this.container.addEventListener('click', (e) => {
-      if (e.target.classList.contains('discount-order-btn') || 
-          e.target.classList.contains('quick-order-btn')) {
+    this.container.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("discount-order-btn") ||
+        e.target.classList.contains("quick-order-btn")
+      ) {
         const itemId = e.target.dataset.id;
         this.handleOrder(itemId);
       }
     });
-    
+
     // Touch support
     let touchStartX = 0;
     let touchEndX = 0;
-    
-    this.container.addEventListener('touchstart', (e) => {
+
+    this.container.addEventListener("touchstart", (e) => {
       touchStartX = e.changedTouches[0].screenX;
     });
-    
-    this.container.addEventListener('touchend', (e) => {
+
+    this.container.addEventListener("touchend", (e) => {
       touchEndX = e.changedTouches[0].screenX;
       this.handleSwipe(touchStartX, touchEndX);
     });
-    
+
     // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.target.closest('#discounted')) {
-        if (e.key === 'ArrowLeft') {
+    document.addEventListener("keydown", (e) => {
+      if (e.target.closest("#discounted")) {
+        if (e.key === "ArrowLeft") {
           this.stopAutoPlay();
           this.slideToPrev();
           this.startAutoPlay();
-        } else if (e.key === 'ArrowRight') {
+        } else if (e.key === "ArrowRight") {
           this.stopAutoPlay();
           this.slideToNext();
           this.startAutoPlay();
@@ -1749,31 +1794,31 @@ class DiscountedSlider {
       }
     });
   }
-  
+
   handleSwipe(startX, endX) {
     const swipeThreshold = 50;
     const diff = startX - endX;
-    
+
     if (Math.abs(diff) > swipeThreshold) {
       this.stopAutoPlay();
-      
+
       if (diff > 0) {
         this.slideToNext(); // Swipe left
       } else {
         this.slideToPrev(); // Swipe right
       }
-      
+
       this.startAutoPlay();
     }
   }
-  
+
   handleOrder(itemId) {
-    const item = this.items.find(i => i.id == itemId);
+    const item = this.items.find((i) => i.id == itemId);
     if (!item) return;
-    
+
     // Create order confirmation with special discount emphasis
-    const notification = document.createElement('div');
-    notification.className = 'discount-order-notification';
+    const notification = document.createElement("div");
+    notification.className = "discount-order-notification";
     notification.innerHTML = `
       <div class="notification-content">
         <span class="success-icon">🎉</span>
@@ -1783,44 +1828,60 @@ class DiscountedSlider {
         </div>
       </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
-      notification.classList.add('show');
+      notification.classList.add("show");
     }, 10);
-    
+
     setTimeout(() => {
-      notification.classList.remove('show');
+      notification.classList.remove("show");
       setTimeout(() => notification.remove(), 300);
     }, 3000);
   }
-  
+
   destroy() {
     this.stopAutoPlay();
     if (this.countdownInterval) {
       clearInterval(this.countdownInterval);
     }
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
   }
 }
 
 //Initialization
 document.addEventListener("DOMContentLoaded", () => {
   // Render recommendations with animation
-  if (typeof recommendationAnimator !== 'undefined' && typeof recommendedFoods !== 'undefined') {
+  if (
+    typeof recommendationAnimator !== "undefined" &&
+    typeof recommendedFoods !== "undefined"
+  ) {
     recommendationAnimator.renderRecommendations(recommendedFoods);
   }
-  if (typeof CarouselManager !== 'undefined' && typeof popularFoods !== 'undefined') {
+  if (
+    typeof CarouselManager !== "undefined" &&
+    typeof popularFoods !== "undefined"
+  ) {
     new CarouselManager(popularFoods);
   }
-  if (typeof ChefsSpecialManager !== 'undefined' && typeof chefsSpecials !== 'undefined') {
+  if (
+    typeof ChefsSpecialManager !== "undefined" &&
+    typeof chefsSpecials !== "undefined"
+  ) {
     new ChefsSpecialManager(chefsSpecials);
   }
-  if (typeof SeasonalBookManager !== 'undefined' && typeof seasonalSpecials !== 'undefined') {
+  if (
+    typeof SeasonalBookManager !== "undefined" &&
+    typeof seasonalSpecials !== "undefined"
+  ) {
     new SeasonalBookManager(seasonalSpecials);
   }
-  if (typeof DiscountedSlider !== 'undefined' && typeof discounted !== 'undefined' && discounted.length > 0) {
+  if (
+    typeof DiscountedSlider !== "undefined" &&
+    typeof discounted !== "undefined" &&
+    discounted.length > 0
+  ) {
     new DiscountedSlider(discounted);
   }
 });

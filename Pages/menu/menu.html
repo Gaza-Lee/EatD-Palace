@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EatD Palace-Menu</title>
 
     <script type="module" src="/src/shared/global.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="menu-nav">
-        <ul>
-            <li>
-                <iconify-icon icon="emojione-monotone:pot-of-food"></iconify-icon>
-                <a href="#main-dishes">Main Dishes</a>
-            </li>
-            <li>
-                <iconify-icon icon="ion:fast-food-outline"></iconify-icon>
-                <a href="#dessert-and-beverages">Main Dishes</a>
-            </li>
-            <li>
-                <iconify-icon icon="streamline-block:drink-food-burger"></iconify-icon>
-                <a href="#appetizers">Main Dishes</a>
-            </li>
-        </ul>
+      <ul>
+        <li>
+          <iconify-icon icon="emojione-monotone:pot-of-food"></iconify-icon>
+          <a href="#main-dishes">Main Dishes</a>
+        </li>
+        <li>
+          <iconify-icon icon="ion:fast-food-outline"></iconify-icon>
+          <a href="#dessert-and-beverages">Main Dishes</a>
+        </li>
+        <li>
+          <iconify-icon
+            icon="streamline-block:drink-food-burger"
+          ></iconify-icon>
+          <a href="#appetizers">Main Dishes</a>
+        </li>
+      </ul>
     </nav>
+
     <section id="main-dishes">
-        <h3>Main Dishes</h3>
-       
+      <h3>Main Dishes</h3>
+
+      <div id="menu-container" class="menu-container"></div>
+      <div class="view-controls">
+        <button id="view-less-btn" class="view-less-btn" style="display: none">View Less</button>
+        <button id="view-more-btn" class="view-more-btn">View More</button>
+      </div>
     </section>
     <script src="menu.js"></script>
-</body>
+  </body>
 </html>
