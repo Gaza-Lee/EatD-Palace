@@ -3,9 +3,11 @@ html {
 }
 
 body {
-  background: url("/src/assets/bgimg2.jpg");
+  background: url("/src/assets/bgimg2.jpg") center center no-repeat;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
   position: relative;
 }
 

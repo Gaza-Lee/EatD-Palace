@@ -1,7 +1,9 @@
 body {
-  background: url(/src/assets/bgimg4.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: url(/src/assets/bgimg4.jpg)  center center no-repeat;
+ background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
   position: relative;
 }
 
