@@ -19,11 +19,10 @@ body::before {
 }
 
 .menu-nav{
-  top: 5.5rem !important;
   animation: slideDown 0.6s ease-out;
 }
 
-body > section {
+body > section:not(.navigation):not(:has(nav)):not(:has(.home-nav)):not(:has(.menu-nav)) {
   margin: 1rem;
   margin-bottom: 10rem;
   padding: 1rem;

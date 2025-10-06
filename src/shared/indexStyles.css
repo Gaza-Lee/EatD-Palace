@@ -22,12 +22,13 @@ body {
 /* Navbar container */
 #nav-bar {
   position: sticky;
-  top: 1rem;
-  margin: 1rem 2rem;
+  top:0;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
+  backdrop-filter: blur(10px);
 }
 
 /* Logo */
@@ -148,11 +149,10 @@ nav iconify-icon {
 .menu-nav {
   margin: auto;
   position: sticky;
-  top: 3.5rem;
+  top: 70px;
   z-index: 10000;
-  margin: auto 1rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(5px);
   padding: 0.5rem 1rem;
   transition: background 0.3s ease, transform 0.3s ease-in-out;
 }

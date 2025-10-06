@@ -1,0 +1,628 @@
+body {
+  background: url(/src/assets/bgimg1.jpg) center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.table-selection-cntainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.table-selection-cntainer h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.table-selection-cntainer aside {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.locations-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.location {
+  flex: 1 1 400px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  cursor: default;
+}
+
+.location:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.location:hover .location-image {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.location-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  position: relative;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    #fd6a01,
+    #ffaa00,
+    #fd6a01,
+    #ff6600,
+    #fd6a01
+  );
+  background-size: 400% 400%;
+  animation: movingBorder 3s ease infinite;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.location .description {
+  font-size: 1.1em;
+  line-height: 1.4;
+  font-family: "Roboto", sans-serif;
+}
+
+.location-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.location button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: #ff6600;
+  border-radius: 5px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location button:hover {
+  background: hsla(25, 99%, 55%, 1);
+  box-shadow: 0 4px 8px rgba(255, 102, 0, 0.3);
+  transform: scale(1.02);
+}
+
+@keyframes movingBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ========================= */
+/*   TABLE LAYOUT STYLES     */
+/* ========================= */
+
+.table-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease;
+}
+
+.table-modal h3 {
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.table-modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  position: relative;
+  max-height: 90vh;
+  max-width: 90%;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  color: white;
+  text-align: center;
+  animation: popUp 0.3s ease;
+  transform: translateY(0);
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ff6600;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ffaa00;
+}
+
+
+/* ========================= */
+/*      TABLE GRID AREA      */
+/* ========================= */
+
+.table-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: 4rem !important;
+}
+
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+/* Empty placeholders for spacing */
+.empty-slot {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+}
+
+/* ========================= */
+/*       BASE TABLE STYLE    */
+/* ========================= */
+
+.table {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    background 0.3s ease;
+}
+
+.table:hover {
+  transform: scale(1.07);
+  border-color: #ff6600;
+}
+
+.table.selected {
+  background: #ff6600 !important;
+  border-color: #ff6600;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.table.selected .chair,
+.table.selected .chair-segment {
+  background: #ff6600 !important;
+}
+
+/* ========================= */
+/*       ROUND TABLES        */
+/* ========================= */
+
+.table.round {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.table.round .chair {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+}
+
+/* Chair Positions */
+.table.round .chair.top {
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.table.round .chair.bottom {
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.table.round .chair.left {
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.table.round .chair.right {
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Special Variant: 2-Chair Round Table */
+.table.round.two-chair .chair {
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.table.round.two-chair .chair.top,
+.table.round.two-chair .chair.bottom {
+  filter: brightness(1.2);
+}
+
+/* ========================= */
+/*     RECTANGULAR TABLES    */
+/* ========================= */
+
+.table.rect {
+  width: 120px;
+  height: 60px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Chair Bar Containers */
+.chair-bar {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.chair-bar.top {
+  top: -20px;
+  left: 0;
+  right: 0;
+}
+
+.chair-bar.bottom {
+  bottom: -20px;
+  left: 0;
+  right: 0;
+}
+
+.chair-bar.left {
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+.chair-bar.right {
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+
+/* Chair Segments (Rectangular) */
+.chair-segment {
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.table:hover .chair-segment {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================= */
+/*     CONFIRM BUTTON STYLE  */
+/* ========================= */
+
+#confirm-table {
+  background: #ff6600;
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+#confirm-table:hover {
+  background: #ffaa00;
+  transform: scale(1.05);
+}
+
+.table.round::before,
+.table.rect::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.table.rect::before {
+  border-radius: 6px;
+  width: 85%;
+  height: 55%;
+}
+
+/*================================Confirmation and  Form styles===========================*/
+.confirmation-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  text-align: center;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animated tick */
+.tick-mark {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid #28a745;
+  animation: circleAppear 0.5s ease forwards;
+}
+
+.check {
+  position: absolute;
+  left: 22px;
+  top: 30px;
+  width: 25px;
+  height: 12px;
+  border-left: 4px solid #28a745;
+  border-bottom: 4px solid #28a745;
+  transform: rotate(-45deg);
+  opacity: 0;
+  animation: checkAppear 0.4s ease forwards 0.5s;
+}
+
+@keyframes circleAppear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkAppear {
+  from {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
+.confirmation-text {
+  font-size: 1.1rem;
+  color: #28a745;
+  margin-top: 0.5rem;
+}
+
+/* Form styles */
+#reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+#reservation-form input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#reservation-form button {
+  padding: 0.7rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#reservation-form button:hover {
+  background-color: #218838;
+}
+
+.form-fade {
+  animation: formFadeIn 0.6s ease forwards;
+  text-align: center;
+  color: white;
+}
+
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Centered form overlay */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form-overlay #reservation-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.form-overlay input {
+  color: white;
+  padding: 0.7rem;
+  border: none !important;
+  border-radius: 6px;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.input-wrapper {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+  border: 2px solid #ff6600;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+}
+
+.form-overlay button {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-overlay button:hover {
+  background: #218838;
+}
+.fade-out {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

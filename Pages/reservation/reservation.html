@@ -1,13 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EatD Palace-Reservation</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EatD Palace - Reservation</title>
 
     <script type="module" src="/src/shared/global.js"></script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="table-selection-cntainer">
+      <h2>Catch a table early before arrival</h2>
+      <aside>
+        Reserve a table to guarantee your spot at EatD Palace. Whether it's a
+        romantic dinner, family gathering, or special celebration, we've got you
+        covered.
+      </aside>
+      <div class="locations-container">
+        <div class="location">
+          <div class="location-image">
+            <img src="/src/assets/location1.png" />
+          </div>
+          <h3>The Baesement</h3>
+          <p class="description">
+            Hidden beneath the main floor, this moody, candlelit lounge offers
+            plush booths and velvet drapes, ideal for date nights, whispered
+            confessions, and intimate celebrations.
+          </p>
+          <button>Pick Table</button>
+        </div>
+
+        <div class="location">
+          <div class="location-image">
+            <img src="/src/assets/location2.png" />
+          </div>
+          <h3>The Open Hearth</h3>
+          <p class="description">
+            Gather 'round the crackling fireplace in our rustic-chic dining
+            hall. Exposed brick, wooden beams, and communal tables make this
+            space perfect for family feasts and hearty gatherings.
+          </p>
+          <button>Pick Table</button>
+        </div>
+
+        <div class="location">
+          <div class="location-image">
+            <img src="/src/assets/location3.png" />
+          </div>
+          <h3>The Top HeeVen</h3>
+          <p class="description">
+            Dine under the stars on our rooftop terrace with panoramic city
+            views. Chic, airy, and elegantly lit, the ultimate spot for sunset
+            cocktails, milestone events, or treating yourself like royalty.
+          </p>
+          <button>Pick Table</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="table-modal" class="table-modal hidden">
+      <div class="table-modal-content">
+        <span class="close-btn">&times;</span>
+        <h3>Select Your Table</h3>
+
+        <!-- JS dynamically fills this container -->
+        <div class="table-layout"></div>
+
+        <button id="confirm-table">Confirm Selection</button>
+      </div>
+    </div>
+
+    <!-- Confirmation overlay -->
+    <div class="confirmation-container hidden">
+      <div class="tick-mark">
+        <div class="circle"></div>
+        <div class="check"></div>
+      </div>
+      <p class="confirmation-text">Table selected successfully!</p>
+    </div>
+
+    <script src="reservation.js"></script>
+  </body>
 </html>

@@ -11,7 +11,7 @@ body {
   position: relative;
 }
 
-body > section {
+body > section:not(.navigation):not(:has(nav)):not(:has(.home-nav)):not(:has(.menu-nav)) {
   margin-bottom: 5rem;
 }
 
