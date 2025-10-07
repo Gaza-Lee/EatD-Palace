@@ -18,7 +18,7 @@ body::before {
   pointer-events: none;
 }
 
-.table-selection-cntainer {
+.table-selection-container {
   display: flex;
   flex-direction: column;
   max-width: 1600px;
@@ -625,4 +625,131 @@ body::before {
   to {
     opacity: 0;
   }
+}
+
+
+/*Event reservation section*/
+.event-reservation{
+    max-width: 1600px;
+    display: flex;
+    margin: 3rem auto;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    padding-right: 2rem;
+}
+
+.event-image{
+    height: 440px;
+    width: 40%;
+    margin: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #fd6a01;
+}
+
+.event-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.event-reservation-content{
+    width: 70%;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-reservation-content h2::before, .event-reservation-content h2::after{
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #fd6a01, #ffaa00, #ff6600);
+    top: 50%;
+}
+.event-reservation-content h2::before{
+    left: -10%;
+}
+.event-reservation-content h2::after{
+    right: -10%;
+}
+.event-reservation-content h2{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.event-reservation-content strong{
+    color: #ff6600;
+    font-size: 1.2rem;
+}
+
+.event-reservation-content p{
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.event-reservation-content button{
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: #ff6600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 102, 0, 0.3);
+    margin-bottom: 2rem;
+}
+.event-reservation-content button:hover{
+    background: hsla(25, 99%, 55%, 1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.4);
+}
+
+.marketing{
+    align-items: center;
+    display: flex ;
+    justify-content: space-around;
+    gap: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.marketing iconify-icon{
+    font-size: 3rem;
+    color: #ff6600;
+    margin-bottom: 0.5rem;
+}
+
+.markt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1 1 150px;
+}
+.mark-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'Roboto', sans-serif;
+    color: #f0f0f0;
+}
+
+.small-detail{
+    font-size: 0.8rem;
+    font-weight: 500;
 }
