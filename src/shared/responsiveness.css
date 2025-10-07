@@ -1,3 +1,204 @@
+/*Mobile range from 320px to 600px*/
+/*Tablet 600px to 1024px*/
+
 @media (max-width: 768px) {
-  
+  html {
+    font-size: 2vh;
+  }
+
+  /*Index nav bar*/
+  #nav-bar {
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    left: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+    gap: 0.5rem;
+  }
+  #nav-bar nav {
+    margin-bottom: 1rem;
+  }
+  .name-and-logo {
+    align-self: flex-start;
+  }
+  nav ul {
+    font-size: 0.8em;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav li a.active {
+    font-weight: 600;
+    transform: scale(1.05);
+  }
+
+  nav li a span::after {
+    bottom: -7px;
+  }
+  nav li a {
+    gap: 3px;
+  }
+  nav iconify-icon {
+    font-size: 2vh;
+  }
+  #nav-bar .essentials {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #nav-bar search {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+  }
+
+  input[type="search"] {
+    width: 100%;
+    height: 100%;
+  }
+
+  #nav-bar .search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+    align-items: center;
+    justify-content: center;
+    background: #f60;
+    height: 100%;
+    color: white;
+    font-weight: 200px;
+    display:block;
+    margin: 0;
+  }
+
+  search button{
+    border-radius: 0 !important;
+    border: transparent !important;
+  }
+
+  .essentials button {
+    border: 2px solid #f60;
+    pointer-events: none;
+    background: hsla(25, 99%, 85%, 1);
+  }
+
+  .essentials .acc{
+    width: 10%;
+  }
+
+  /*Index hmtl styles*/
+  .index-body{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+  }
+
+  .welcome{
+    padding-top: 0;
+    gap: 0.5rem;
+    height: 70vh;
+    text-align: center;
+  }
+  .welcome section{
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .welcome section > *{
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcome p{
+    font-size: 0.7rem;
+  }
+
+  .welcome h1{
+    font-size: 1.5rem;
+    width: 80vw;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .order-now{
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .order-now .text::before {
+    background-size: 80%;
+    transform: scale(1.02);
+  }
+
+  .order-now iconify-icon{
+    font-size: 1rem;
+  }
+
+
+  .index-body .carousel{
+    height: 280px;
+  }
+
+  .carousel-container {
+    width: 98vw;
+  }
+  .carousel-container img {
+    width: 80%;
+  }
+
+  .index-body .testimonials-container{
+    margin: 0;
+    bottom: 6%;
+    min-height: 180px;
+    width: 90%;
+    left: 5%;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .index-body .comment{
+    align-items: center;
+  }
+
+  .index-body .profile img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .index-body .comment p {
+    font-size: 1rem;
+    line-height: 1.1rem;
+  }
+
+
+  .index-body #socials{
+    position: relative;
+    top: 1rem;
+    right: auto;
+    bottom: 0;
+    transform: none;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+
+  .index-body #socials iconify-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 }

@@ -42,7 +42,7 @@ export function Navbar() {
     <section class="essentials">
       <search>
         <input type="search" name="search-for-items-in-menu" placeholder="Search...">
-        <button class="search nav-buttons">
+        <button class="search-btn nav-buttons">
           <iconify-icon icon="akar-icons:search"></iconify-icon>
         </button>
       </search>
