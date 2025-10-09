@@ -22,6 +22,12 @@ body::before {
   animation: slideDown 0.6s ease-out;
 }
 
+.menu-nav a{
+  align-items: center !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
 
 #main-dishes, #dessert-and-beverages, #appetizers{
   margin: 1rem;
@@ -37,11 +43,6 @@ body::before {
 section h3 {
   font-size: 2rem;
   font-weight: bold;
-}
-
-.menu-nav li {
-  display: flex;
-  gap: 0.5rem;
 }
 
 .menu-container {

@@ -45,3 +45,34 @@ import { Footer } from "../shared/footer.js";
     document.body.appendChild(Footer());
   }
 })();
+
+// Select all sections and corresponding nav links
+const sections = document.querySelectorAll(".home-body section, .menu-body section");
+const navLinks = document.querySelectorAll(".home-nav a, .menu-nav a");
+
+// Intersection Observer setup
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute("id");
+
+      // find link in whichever nav exists on this page
+      const navLink = document.querySelector(`.home-nav a[href="#${id}"], .menu-nav a[href="#${id}"]`);
+
+      if (entry.isIntersecting && navLink) {
+        // Remove active class from all links on this page
+        navLinks.forEach((link) => link.classList.remove("active"));
+
+        // Highlight the matching one
+        navLink.classList.add("active");
+      }
+    });
+  },
+  {
+    root: null,
+    threshold: 0.5, // 50% of the section must be visible
+  }
+);
+
+// Observe each section
+sections.forEach((section) => observer.observe(section));

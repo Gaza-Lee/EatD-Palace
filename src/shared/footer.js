@@ -27,10 +27,10 @@ export function Footer() {
         </div>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Explore -->
       <div class="footer-links">
-        <h2>Quick Links</h2>
-        <a href="/pages/home/home.html">Home</a>
+        <h2>Explore</h2>
+        <a href="/pages/home/home.html">Affordable Dining</a>
         <a href="/pages/menu/menu.html">Menu</a>
         <a href="/pages/aboutUs/aboutUs.html">About Us</a>
         <a href="/pages/reservation/reservation.html">Reservation</a>
