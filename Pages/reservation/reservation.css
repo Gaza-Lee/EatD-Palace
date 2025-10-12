@@ -32,9 +32,9 @@ body::before {
   border-radius: 10px;
 }
 
-.table-selection-cntainer h2 {
-  text-align: center;
-  font-size: 2.5rem;
+#TableSelection h2 {
+  text-align: center ;
+  font-size: 2rem;
 }
 
 .table-selection-cntainer aside {

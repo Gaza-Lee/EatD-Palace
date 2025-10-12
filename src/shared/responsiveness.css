@@ -15,7 +15,7 @@
     left: 0;
     padding: 0;
     padding-top: 0.5rem;
-    padding-left: 5px;    
+    padding-left: 5px;
     padding-bottom: 5px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
     gap: 0.5rem;
@@ -77,11 +77,11 @@
     height: 100%;
     color: white;
     font-weight: 200px;
-    display:block;
+    display: block;
     margin: 0;
   }
 
-  search button{
+  search button {
     border-radius: 0 !important;
     border: transparent !important;
   }
@@ -92,59 +92,61 @@
     background: hsla(25, 99%, 85%, 1);
   }
 
-  .essentials .acc{
+  .essentials .acc {
     width: 10%;
   }
 
   /*universal styles */
-  .home-nav, .menu-nav{
+  .home-nav,
+  .menu-nav {
     font-size: 0.8rem;
     margin: 0;
     padding: 0;
     top: 125px;
   }
-  .home-nav ul, .menu-nav ul{
+  .home-nav ul,
+  .menu-nav ul {
     gap: 0.2rem;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   /*Index hmtl styles*/
-  .index-body{
+  .index-body {
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
   }
 
-  .welcome{
+  .welcome {
     padding-top: 0;
     gap: 0;
     height: 70vh;
     text-align: center;
   }
-  .welcome section{
+  .welcome section {
     flex-direction: column;
     align-items: center;
     gap: 0.2rem;
   }
 
-  .welcome section > *{
+  .welcome section > * {
     margin: 0;
     padding: 0;
   }
 
-  .welcome p{
+  .welcome p {
     font-size: 0.7rem;
   }
 
-  .welcome h1{
+  .welcome h1 {
     font-size: 1.5rem;
     width: 80vw;
     margin-top: 0;
     text-align: center;
   }
 
-  .order-now{
+  .order-now {
     bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
@@ -158,12 +160,11 @@
     transform: scale(1.02);
   }
 
-  .order-now iconify-icon{
+  .order-now iconify-icon {
     font-size: 1rem;
   }
 
-
-  .index-body .carousel{
+  .index-body .carousel {
     height: 280px;
   }
 
@@ -174,7 +175,7 @@
     width: 80%;
   }
 
-  .index-body .testimonials-container{
+  .index-body .testimonials-container {
     margin: 0;
     bottom: 6%;
     min-height: 180px;
@@ -184,7 +185,7 @@
     font-size: 0.95rem;
   }
 
-  .index-body .comment{
+  .index-body .comment {
     align-items: center;
   }
 
@@ -198,8 +199,7 @@
     line-height: 1.1rem;
   }
 
-
-  .index-body #socials{
+  .index-body #socials {
     position: relative;
     top: 1rem;
     right: auto;
@@ -217,99 +217,405 @@
 
   /*Home styles*/
 
-  #popular, #chefs-special, #seasonal-specials, #the-peoples-choice, #discounted{
+  #popular,
+  #chefs-special,
+  #seasonal-specials,
+  #the-peoples-choice,
+  #discounted {
     margin: 3rem 2% !important;
     padding: 0.5rem !important;
     overflow: hidden;
   }
 
-  #popular h3, #chefs-special h3, #seasonal-specials h3, #the-peoples-choice h3{
+  #popular h3,
+  #chefs-special h3,
+  #seasonal-specials h3,
+  #the-peoples-choice h3 {
     font-size: 1.3rem;
     margin: 0 !important;
   }
 
-   #popular span:not(.cat-tlt) {
+  #popular span:not(.cat-tlt) {
     font-size: 1.5rem;
     padding: 0.4rem 1.2rem;
   }
 
   .home-body .carousel-container {
-    height: 40vh;
+    height: 55vh;
     width: 100%;
+    border-radius: 1.5rem;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.5);
   }
-
   .home-body .carousel-item {
     width: 100%;
-    height: 50%;
+    height: 100%;
+  }
+
+  .home-body .carousel-item img {
+    height: 40%;
+    width: 90%;
+    margin-top: 1rem;
   }
 
   .food-info-overlay {
-    padding:0;
+    padding: 0;
     font-size: 0.8rem;
     width: 100% !important;
     position: relative;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    display: block;
+    height: 100%;
+    margin-top: 0.5rem;
   }
 
-  .food-info-content{
+  .food-info-content {
     font-size: 0.8rem;
     line-height: 1rem;
   }
 
-  .food-name{
+  .food-name {
     font-size: 1.3rem;
   }
 
   .food-description {
-    line-height:1;
+    line-height: 1;
   }
 
   .food-details {
     font-size: 1.1rem !important;
     flex-direction: column;
+    gap: 0;
     margin: 0;
+    padding: 0.5rem;
   }
 
+  .food-details span {
+    margin: 0.2rem !important;
+  }
+
+  /*chefs special */
+  /* Allow vertical growth and remove clip */
+  .chefs-container {
+    height: 70vh !important;
+    border-radius: 15px;
+  } 
+  /* Track should stack vertically */
+  .chefs-track {
+    display: block !important;
+    height: 100% !important;
+  } 
+  /* Each item fills full width */
+  .chefs-item {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    margin-bottom: 2rem;
+  } 
+  /* Hide preview item */
+  .chefs-item.next {
+    display: none !important;
+  } 
+  /* Image */
+  .chefs-img-container {
+    width: 100% !important;
+    height: 230px !important;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+  }
+  .chefs-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+  } 
+  /* ✅ Food content visible and flowing */
+  .food-content {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1.5rem;
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: all !important;
+    background: rgba(0, 0, 0, 0.6);
+    display: block !important;
+  } 
+  /* Text adjustments */
+  .food-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+  .food-content p {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+  .food-details {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .order-btn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  } 
+  /* Navigation repositioned */
+  .chefs-nav {
+    position: static !important;
+    margin-top: 0.5rem;
+    justify-content: center;
+    gap: 1rem;
+    transform: none !important;
+  }
+  .chefs-nav button {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .chefs-item.hidden,
+  .chefs-item:not(.active) {
+    opacity: 1 !important;
+    z-index: 2 !important;
+    pointer-events: all !important;
+    position: relative !important;
+    transform: none !important;
+  }
+
+  .chefs-item:not(.active) .food-content {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: all !important;
+    display: block !important;
+  }
+
+  .chefs-item:not(.active) .chefs-img-container img {
+    clip-path: none !important;
+    border-radius: 15px 15px 0 0 !important;
+    filter: brightness(1) !important;
+  }
+
+  /*Seasonal special */
+   #seasonal-specials {
+    padding: 1rem;
+    margin: 2rem 0.5rem;
+    border-radius: 15px;
+    min-height: auto;
+  }
+
+  #seasonal-specials h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Book container becomes vertical single page */
+  .book-container {
+    width: 100%;
+    height: auto;
+    perspective: none;
+    margin: 1.5rem auto;
+  }
+
+  .book {
+    display: block;
+    transform: none;
+  }
+
+  /* Each page becomes a block */
+  .book-page {
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .left-page,
+  .right-page {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    transform: none;
+  }
+
+  /* Image and content layout stack */
+  .page-image {
+    height: 250px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .page-content {
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .seasonal-name {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .seasonal-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .seasonal-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .season-tag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .seasonal-details {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .seasonal-price,
+  .seasonal-rating {
+    font-size: 1rem;
+  }
+
+  .seasonal-order-btn {
+    align-self: center;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Navigation buttons smaller and floating below */
+  .book-nav {
+    position: relative;
+    top: unset;
+    transform: none;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .book-nav button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  /* Page indicators simplified */
+  .page-indicators {
+    margin-top: 1rem;
+    gap: 0.4rem;
+  }
+
+  .page-indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* User recommendation adjustments */
+  .user-recommendation {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .recommendation-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recommendation-slider {
+    width: 100%;
+  }
+
+  .recommended-item {
+    flex-direction: column;
+  }
+
+  .food-card {
+    width: 100%;
+  }
+
+  .food-image {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .recommendation-info {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .user-profile-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .user-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .order-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  
   #discounted {
     padding: 2rem 1rem;
   }
-  
+
   #discounted h3 {
     font-size: 1.8rem;
   }
-  
+
   .discount-slider-track {
     height: auto;
     min-height: 600px;
   }
-  
+
   .discount-content {
     flex-direction: column;
     gap: 1rem;
     padding: 1.5rem;
   }
-  
+
   .discount-badge {
     top: 10px;
     right: 10px;
     padding: 0.8rem 1.2rem;
   }
-  
+
   .discount-percentage {
     font-size: 1.5rem;
   }
-  
+
   .discount-name {
     font-size: 1.5rem;
   }
-  
+
   .current-price {
     font-size: 1.5rem;
   }
-  
+
   .discount-navigation {
     gap: 1rem;
   }
-  
+
   .discount-nav-btn {
     width: 40px;
     height: 40px;

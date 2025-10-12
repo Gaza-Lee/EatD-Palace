@@ -130,7 +130,7 @@ class CarouselManager {
       if (!this.isPaused) {
         this.rotate("next");
       }
-    }, 3000);
+    }, 5000);
   }
 
   stopAutoRotate() {
@@ -163,6 +163,34 @@ class CarouselManager {
           this.rotate("next");
         }
       }
+    });
+
+    //Swipe gesture for touch screen
+    let startX = 0;
+    let endX = 0;
+
+    this.track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    this.track.addEventListener("touchmove", (e) => {
+      endX = e.touches[0].clientX;
+    });
+
+    this.track.addEventListener("touchend", () => {
+      const diffX = endX - startX;
+
+      // Minimal swipe distance threshold (avoid accidental taps)
+      if (Math.abs(diffX) > 50) {
+        if (diffX < 0) {
+          this.rotate("next");
+        } else {
+          this.rotate("prev");
+        }
+      }
+      // Reset
+      startX = 0;
+      endX = 0;
     });
   }
 }
