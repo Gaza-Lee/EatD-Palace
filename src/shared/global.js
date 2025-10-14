@@ -46,33 +46,77 @@ import { Footer } from "../shared/footer.js";
   }
 })();
 
-// Select all sections and corresponding nav links
-const sections = document.querySelectorAll(".home-body section, .menu-body section");
-const navLinks = document.querySelectorAll(".home-nav a, .menu-nav a");
+/// ===== Select sections and nav links =====
+const homeSections = document.querySelectorAll(".home-body section");
+const menuSections = document.querySelectorAll(".menu-body section");
+const homeNavLinks = document.querySelectorAll(".home-nav a");
+const menuNavLinks = document.querySelectorAll(".menu-nav a");
 
-// Intersection Observer setup
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.getAttribute("id");
+// =========================
+// HOME PAGE OBSERVER (simple threshold)
+// =========================
+if (homeNavLinks.length > 0) {
+  const homeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const navLink = document.querySelector(`.home-nav a[href="#${id}"]`);
 
-      // find link in whichever nav exists on this page
-      const navLink = document.querySelector(`.home-nav a[href="#${id}"], .menu-nav a[href="#${id}"]`);
+        if (entry.isIntersecting && navLink) {
+          homeNavLinks.forEach((link) => link.classList.remove("active"));
+          navLink.classList.add("active");
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5, // 50% visible = active
+    }
+  );
 
-      if (entry.isIntersecting && navLink) {
-        // Remove active class from all links on this page
-        navLinks.forEach((link) => link.classList.remove("active"));
+  homeSections.forEach((section) => homeObserver.observe(section));
+}
 
-        // Highlight the matching one
-        navLink.classList.add("active");
+// =========================
+// MENU PAGE OBSERVER (most visible section detection)
+// =========================
+if (menuNavLinks.length > 0) {
+  const menuObserver = new IntersectionObserver(
+    (entries) => {
+      // find which section has the largest visible area
+      let mostVisible = null;
+      let maxRatio = 0;
+
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > maxRatio) {
+          mostVisible = entry;
+          maxRatio = entry.intersectionRatio;
+        }
+      });
+
+      if (mostVisible && mostVisible.isIntersecting) {
+        const id = mostVisible.target.getAttribute("id");
+        const navLink = document.querySelector(
+          `.menu-nav a[href="#${id}"]`
+        );
+
+        if (navLink) {
+          menuNavLinks.forEach((link) => link.classList.remove("active"));
+          navLink.classList.add("active");
+        }
       }
-    });
-  },
-  {
-    root: null,
-    threshold: 0.5, // 50% of the section must be visible
-  }
-);
+    },
+    {
+      root: null,
+      threshold: buildThresholdList(), // more granular detection
+    }
+  );
 
-// Observe each section
-sections.forEach((section) => observer.observe(section));
+  function buildThresholdList() {
+    const thresholds = [];
+    for (let i = 0; i <= 1.0; i += 0.1) thresholds.push(i);
+    return thresholds;
+  }
+
+  menuSections.forEach((section) => menuObserver.observe(section));
+}

@@ -85,6 +85,7 @@ class CarouselManager {
                         <span class="price">${food.price}</span>
                         <span class="rating">${food.rating}</span>
                     </div>
+                    <button style="margin: 0.5rem auto;" class="order-btn">Order Now</button>
                 </div>
             `;
 
@@ -963,7 +964,9 @@ class RecommendationAnimator {
     return `
       <div class="recommended-item" data-food-id="${food.id}">
         <div class="food-card">
-          <img class="food-image" src="${food.image}" alt="${food.name}" loading="lazy" />
+          <div class="recmd-food-image-container">
+            <img class="food-image" src="${food.image}" alt="${food.name}" loading="lazy" />
+          </div>
           <div class="food-overlay">
             <h4 class="food-name">${food.name}</h4>
             <div class="food-meta">

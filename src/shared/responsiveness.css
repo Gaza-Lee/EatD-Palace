@@ -235,13 +235,23 @@
     margin: 0 !important;
   }
 
+  .chefs-item,
+  .book-page {
+    animation: fadeInSlide 0.6s ease forwards !important;
+  }
+
+  .cat-tlt {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
   #popular span:not(.cat-tlt) {
     font-size: 1.5rem;
     padding: 0.4rem 1.2rem;
   }
 
   .home-body .carousel-container {
-    height: 55vh;
+    height: 60vh;
     width: 100%;
     border-radius: 1.5rem;
     backdrop-filter: blur(10px);
@@ -299,14 +309,14 @@
   /*chefs special */
   /* Allow vertical growth and remove clip */
   .chefs-container {
-    height: 70vh !important;
+    height: 78vh !important;
     border-radius: 15px;
-  } 
+  }
   /* Track should stack vertically */
   .chefs-track {
     display: block !important;
     height: 100% !important;
-  } 
+  }
   /* Each item fills full width */
   .chefs-item {
     position: relative !important;
@@ -314,11 +324,11 @@
     height: 100% !important;
     display: block !important;
     margin-bottom: 2rem;
-  } 
+  }
   /* Hide preview item */
   .chefs-item.next {
     display: none !important;
-  } 
+  }
   /* Image */
   .chefs-img-container {
     width: 100% !important;
@@ -331,8 +341,8 @@
     height: 100%;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
-  } 
-  /* ✅ Food content visible and flowing */
+  }
+  /* Food content visible and flowing */
   .food-content {
     position: relative !important;
     width: 100% !important;
@@ -345,7 +355,7 @@
     pointer-events: all !important;
     background: rgba(0, 0, 0, 0.6);
     display: block !important;
-  } 
+  }
   /* Text adjustments */
   .food-content h4 {
     font-size: 1.1rem;
@@ -363,7 +373,7 @@
     width: 100%;
     font-size: 0.9rem;
     padding: 0.8rem;
-  } 
+  }
   /* Navigation repositioned */
   .chefs-nav {
     position: static !important;
@@ -401,7 +411,7 @@
   }
 
   /*Seasonal special */
-   #seasonal-specials {
+  #seasonal-specials {
     padding: 1rem;
     margin: 2rem 0.5rem;
     border-radius: 15px;
@@ -416,11 +426,15 @@
   /* Book container becomes vertical single page */
   .book-container {
     width: 100%;
-    height: auto;
+    height: 100% !important;
     perspective: none;
-    margin: 1.5rem auto;
+    margin: 0;
+    overflow: hidden;
   }
 
+  .book::before {
+    display: none;
+  }
   .book {
     display: block;
     transform: none;
@@ -445,12 +459,12 @@
 
   /* Image and content layout stack */
   .page-image {
-    height: 250px;
+    height: 25vh;
     border-radius: 10px 10px 0 0;
   }
 
   .page-content {
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
     align-items: center;
   }
@@ -463,13 +477,14 @@
   .seasonal-description {
     font-size: 0.9rem;
     line-height: 1.4;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .seasonal-tags {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
+    margin: 0.5rem;
   }
 
   .season-tag {
@@ -504,7 +519,7 @@
     transform: none;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
+    margin: 0.5rem auto;
   }
 
   .book-nav button {
@@ -524,57 +539,81 @@
     height: 8px;
   }
 
-  /* User recommendation adjustments */
-  .user-recommendation {
-    width: 100%;
-    padding: 0.5rem;
-  }
-
-  .recommendation-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .recommendation-slider {
-    width: 100%;
+  #the-peoples-choice {
+    margin: 3rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .recommended-item {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
   }
 
   .food-card {
     width: 100%;
   }
 
-  .food-image {
-    height: 200px;
+  .recmd-food-image-container {
+    width: 85vw;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 30vh;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .recmd-food-image-container img {
+    width: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    height: 100%;
+    display: block;
+    border-radius: inherit;
   }
 
   .recommendation-info {
-    padding: 1rem;
-    text-align: center;
+    margin-top: 1.5rem;
+    align-items: center;
   }
 
   .user-profile-section {
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+  }
+
+  .user-profile-section > div {
+    text-align: center;
+  }
+
+  .user-comment {
+    position: static;
+    margin: 1rem 0;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .agreement-stats {
+    flex-direction: column;
     gap: 0.5rem;
   }
 
-  .user-avatar {
-    width: 60px;
-    height: 60px;
+  .agree-count {
+    font-size: 1.1rem;
+  }
+
+  .food-overlay {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .order-btn {
-    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
+    padding: 0.4rem 1rem;
   }
 
-  
   #discounted {
     padding: 2rem 1rem;
   }
@@ -619,5 +658,466 @@
   .discount-nav-btn {
     width: 40px;
     height: 40px;
+  }
+
+  /*Menu responsiveness*/
+  .menu-body .food-actions {
+    transform: none;
+    opacity: 1;
+  }
+
+  /*About Us*/
+  #history {
+    flex-direction: column;
+    min-height: auto;
+    width: 95%;
+    margin: 2rem auto;
+    border-radius: 1rem;
+  }
+
+  .history-content {
+    width: 100%;
+    padding: 1rem;
+    margin-right: 0;
+    order: 2;
+  }
+
+  .history-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .history-text p {
+    font-size: 1rem;
+    line-height: 1.1rem;
+    text-align: center;
+  }
+
+  .history-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    order: 1;
+  }
+
+  .history-image::before {
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.7) 90%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+
+  .history-image img {
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .testimonials-section {
+    padding: 1rem;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .testimonials-section h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .testimonials-container {
+    gap: 1rem;
+    padding: 0.5rem 0;
+    scroll-snap-type: x mandatory;
+  }
+
+  .comment {
+    width: 85vw; 
+    min-width: 280px;
+    flex-direction: column;
+    max-height: none;
+    padding: 1rem;
+    scroll-snap-align: center;
+  }
+
+  .comment-text {
+    width: 100%;
+    order: 2;
+  }
+
+  .profile-info:first-child {
+    font-size: 1.1rem;
+  }
+
+  .profile-info p:last-child {
+    font-size: 1rem;
+  }
+
+  .comment-text p {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .profile {
+    width: 100%;
+    height: 200px;
+    order: 1;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+
+  /* Scroll arrows */
+  .scroll-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  .scroll-arrow.left {
+    left: 5px;
+  }
+
+  .scroll-arrow.right {
+    right: 5px;
+  }
+
+  /* Review form */
+  .review {
+    width: 100%;
+    padding: 0 0.5rem;
+    gap: 0.8rem;
+  }
+
+  .review input[type="text"] {
+    width: 100% !important;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .review-text {
+    width: 100%;
+  }
+
+  .review textarea {
+    width: 100% !important;
+    height: 120px;
+    padding: 0.8rem 1rem;
+    padding-bottom: 3rem;
+    font-size: 0.9rem;
+  }
+
+  .review input[type="submit"] {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Character counter */
+  .char-counter {
+    bottom: 0.8rem;
+    right: 6rem;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+
+  /* Stars */
+  .stars {
+    font-size: 1.5rem;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+
+  /* Message popup */
+  .message-popup {
+    top: auto;
+    bottom: 20px;
+    right: 10px;
+    left: 10px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* Scrollbar styling for mobile */
+  .testimonials-container::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  /*Reservation tab Responsiveness*/
+  .location-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .event-reservation {
+    flex-direction: column;
+    margin: 2rem auto;
+    padding: 0;
+    gap: 0;
+    width: 95%;
+    max-width: none;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 250px;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    border: none;
+  }
+
+  .event-reservation-content {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .event-reservation-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Adjust decorative lines for mobile */
+  .event-reservation-content h2::before,
+  .event-reservation-content h2::after {
+    width: 30px;
+    height: 3px;
+  }
+
+  .event-reservation-content strong {
+    font-size: 1.1rem;
+  }
+
+  .event-reservation-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    padding: 0 0.5rem;
+  }
+
+  .event-reservation-content button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    width: auto;
+    min-width: 150px;
+  }
+
+  /* Marketing section adjustments */
+  .marketing {
+    gap: 1.5rem;
+    padding: 0 1rem;
+    justify-content: center;
+  }
+
+  .marketing iconify-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .markt {
+    flex: 1 1 100px;
+    min-width: 100px;
+  }
+
+  .mark-text {
+    font-size: 1rem;
+  }
+
+  .small-detail {
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .table-modal-content {
+    padding: 1.5rem;
+    max-width: 95%;
+    max-height: 85vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .table-modal h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+  }
+
+  /* ========================= */
+  /*   SCROLLABLE TABLE AREA   */
+  /* ========================= */
+
+  .table-modal{
+    top: 4rem;
+  }
+  .table-layout {
+    gap: 1.5rem !important;
+    max-height: 50vh;
+    max-width: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 1rem;
+    margin: 0 auto;
+    overflow: auto;
+    
+    /* Scroll behavior */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 102, 0, 0.5) rgba(255, 255, 255, 0.1);
+  }
+
+  /* Webkit scrollbar styling */
+  .table-layout::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .table-layout::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .table-layout::-webkit-scrollbar-thumb {
+    background: rgba(255, 102, 0, 0.5);
+    border-radius: 10px;
+  }
+
+  .table-layout::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 102, 0, 0.7);
+  }
+
+  .table-layout::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* ========================= */
+  /*    REDUCED TABLE SIZES    */
+  /* ========================= */
+
+  .empty-slot {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .table {
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 8px;
+    border-width: 1.5px;
+  }
+
+  /* ========================= */
+  /*   ROUND TABLES (MOBILE)   */
+  /* ========================= */
+
+  .table.round {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .table.round .chair {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 3px;
+  }
+
+  /* Adjusted Chair Positions */
+  .table.round .chair.top {
+    top: -18px;
+  }
+
+  .table.round .chair.bottom {
+    bottom: -18px;
+  }
+
+  .table.round .chair.left {
+    left: -18px;
+  }
+
+  .table.round .chair.right {
+    right: -18px;
+  }
+
+  /* 2-Chair Round Table */
+  .table.round.two-chair .chair,
+  .table.round.tw-chair .chair {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* ========================= */
+  /*  RECTANGULAR TABLES (MOB) */
+  /* ========================= */
+
+  .table.rect {
+    width: 80px !important;
+    height: 45px !important;
+    border-radius: 5px;
+  }
+
+  /* Chair Bar Adjustments */
+  .chair-bar.top {
+    top: -15px;
+    gap: 2px;
+  }
+
+  .chair-bar.bottom {
+    bottom: -15px;
+    gap: 2px;
+  }
+
+  .chair-bar.left {
+    left: -15px;
+    gap: 2px;
+  }
+
+  .chair-bar.right {
+    right: -15px;
+    gap: 2px;
+  }
+
+  /* Chair Segments */
+  .chair-segment {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 2px;
+  }
+
+  /* Confirm button adjustment */
+  #confirm-table {
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+    position: sticky;
+    bottom: 0;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 250px;
+  }
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

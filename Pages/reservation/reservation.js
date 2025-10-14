@@ -263,6 +263,8 @@ class TableReservation {
       }, 5000);
     });
   }
+
+  
 }
 
 document.addEventListener("DOMContentLoaded", () => new TableReservation());
