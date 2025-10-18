@@ -17,7 +17,20 @@ public static class FoodMapping
         };
     }
 
-    public static FoodDetailsDto ToFoodDto(this Food food)
+    public static Food ToEntity(this UpdateFoodDto food, int id)
+    {
+        return new Food()
+        {
+            Id = id,
+            Name = food.Name,
+            Description = food.Description,
+            Price = food.Price,
+            ImageUrl = food.ImageUrl,
+            CategoryId = food.CategoryId
+        };
+    }
+
+    public static FoodDetailsDto ToFoodDetailsDto(this Food food)
     {
         return new FoodDetailsDto(
             food.Id,
@@ -29,15 +42,4 @@ public static class FoodMapping
             food.Comments.Any() ? food.Comments.Average(c => c.Rating) : 0
         );
     }
-
-    public static void UpdateFromDto(this Food food, UpdateFoodDto dto)
-    {
-        food.Name = dto.Name;
-        food.Description = dto.Description;
-        food.Price = dto.Price;
-        food.ImageUrl = dto.ImageUrl;
-        food.CategoryId = dto.CategoryId;
-    }
-
-
 }
