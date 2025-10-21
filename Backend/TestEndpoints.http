@@ -11,3 +11,10 @@ Content-Type: application/json
   "imageUrl": "https://example.com/jollof.jpg",
   "categoryId": 1
 }
+
+###
+DELETE http://localhost:5134/foods/1
+
+
+###
+GET http://localhost:5134/categories

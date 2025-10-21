@@ -9,7 +9,7 @@ public static class FoodEndpoints
 {
     const string GetFoodEndpointName = "GetFood";
 
-    public static RouteGroupBuilder MapFoodEndpoints(this WebApplication app)
+    public static async Task<RouteGroupBuilder> MapFoodEndpoints(this WebApplication app)
     {
         var foodGroup = app.MapGroup("foods").WithParameterValidation();
 
@@ -49,6 +49,13 @@ public static class FoodEndpoints
             dbContext.Entry(existingFood).CurrentValues.SetValues(updateFood.ToEntity(id));
 
             await dbContext.SaveChangesAsync();
+            return Results.NoContent();
+        });
+
+        //Delete /food
+        foodGroup.MapDelete("/{id}", async (int id, RestaurantDbContext dbContext) =>
+        {
+            await dbContext.Foods.Where(food => food.Id == id).ExecuteDeleteAsync();
             return Results.NoContent();
         });
         return foodGroup;
