@@ -2,6 +2,7 @@ using Backend.Data;
 using Backend.Dtos;
 using Backend.Entities;
 using Backend.Mapping;
+using Backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Endpoints;
@@ -27,12 +28,12 @@ public static class UserEndPoints
         }).WithName(GetUserEndpointName);
 
         //POST /user
-        userGroup.MapPost("/", async (RestaurantDbContext dbContext, CreateUserDto newUser) =>
+        userGroup.MapPost("/", async (RestaurantDbContext dbContext, CreateUserDto newUser, IPasswordService passwordService) =>
         {
             if (await dbContext.Users.AnyAsync(user => user.Email == newUser.Email || user.PhoneNumber == newUser.PhoneNumber))
                 return Results.BadRequest("User alreeady exists");
 
-            var user = newUser.ToEntity();
+            var user = newUser.ToEntity(passwordService);
             dbContext.Users.Add(user);
             await dbContext.SaveChangesAsync();
 
@@ -40,13 +41,13 @@ public static class UserEndPoints
         });
 
         //PUT /user
-        userGroup.MapPut("/{id}", async (RestaurantDbContext dbContext, int id, updateUserDto updateUser) =>
+        userGroup.MapPut("/{id}", async (RestaurantDbContext dbContext, int id, updateUserDto updateUser, IPasswordService passwordService) =>
         {
             var userExist = await dbContext.Users.FindAsync(id);
             if (userExist is null)
                 return Results.NotFound();
 
-            userExist.UpdateUserEntitiy(updateUser);
+            userExist.UpdateUserEntitiy(updateUser, passwordService);
             await dbContext.SaveChangesAsync();
 
             return Results.NoContent();

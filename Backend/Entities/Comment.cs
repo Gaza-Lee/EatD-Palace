@@ -7,8 +7,8 @@ public class Comment
     public DateTime CreatedDate { get; set; }
 
     public int UserId { get; set; }
-    public User? User { get; set; }
+    public User User { get; set; } = default!;
 
-    public int? FoodId { get; set; }
-    public Food? Food { get; set; }
+    public int FoodId { get; set; }
+    public Food Food { get; set; } = default!;
 }

@@ -34,6 +34,7 @@ DELETE http://localhost:5134/foods/1
 
 
 
+
 ###
 GET http://localhost:5134/categories
 
@@ -98,3 +99,19 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5134/users/1
+
+
+
+
+
+
+
+
+###
+GET http://localhost:5134/auth/login
+Content-Type: application/json
+
+{
+  "userPhoneOrEmail": "john@example.com",
+  "password": "hashedpassword123"
+}

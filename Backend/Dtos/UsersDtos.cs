@@ -23,3 +23,10 @@ public record updateUserDto(
     string? Password,
     string? Role
 );
+
+public record UpdateProfileDto(
+    string? Username,
+    string? Email,
+    string? PhoneNumber,
+    string? Password
+);
