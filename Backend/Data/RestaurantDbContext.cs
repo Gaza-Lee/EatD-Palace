@@ -8,7 +8,7 @@ public class RestaurantDbContext(DbContextOptions<RestaurantDbContext> options)
 {
     public DbSet<Food> Foods => Set<Food>();
     public DbSet<Category> Categories => Set<Category>();
-    public DbSet<User> users => Set<User>();
+    public DbSet<User> Users => Set<User>();
     public DbSet<Comment> Comments => Set<Comment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

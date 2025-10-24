@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Data.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20251015045958_InitialMigration")]
+    [Migration("20251021170409_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -121,7 +121,9 @@ namespace Backend.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
@@ -135,7 +137,9 @@ namespace Backend.Data.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue("User");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -143,14 +147,15 @@ namespace Backend.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("users");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Backend.Entities.Comment", b =>
                 {
                     b.HasOne("Backend.Entities.Food", "Food")
                         .WithMany("Comments")
-                        .HasForeignKey("FoodId");
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany("Comments")

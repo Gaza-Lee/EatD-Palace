@@ -9,7 +9,10 @@ builder.Services.AddSqlite<RestaurantDbContext>(connectionString);
 var app = builder.Build();
 
 //EndPoints
-await app.MapFoodEndpoints();
-await app.MapCategoryEndpoints();
+app.MapFoodEndpoints();
+app.MapCategoryEndpoints();
+app.MapUserEndpoints();
+
+//Migrate DB
 await app.MigrateDbAsync();
 app.Run();

@@ -10,7 +10,7 @@ public static class CategoryEndpoints
 {
     const string GetCategoryEndpoint = "GetCategory";
 
-    public static async Task<RouteGroupBuilder> MapCategoryEndpoints(this WebApplication app)
+    public static RouteGroupBuilder MapCategoryEndpoints(this WebApplication app)
     {
         var categoryGroup = app.MapGroup("categories").WithParameterValidation();
 
@@ -23,8 +23,8 @@ public static class CategoryEndpoints
         categoryGroup.MapGet("/{id}", async (RestaurantDbContext dbContext, int id) =>
         {
             Category? category = await dbContext.Categories.FindAsync(id);
-            return Results.NotFound();
-        });
+            return category is null ? Results.NotFound() : Results.Ok(category.ToCategoryDto());
+        }).WithName(GetCategoryEndpoint);
 
         //POST /category
         categoryGroup.MapPost("/", async (RestaurantDbContext dbContext, CreateCategoryDto newCategory) =>

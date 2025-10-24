@@ -13,8 +13,88 @@ Content-Type: application/json
 }
 
 ###
+PUT http://localhost:5134/foods/1
+Content-Type: application/json
+
+{
+  "name": "Jollof With Egg",
+  "description": "Spicy Ghanaian rice dish",
+  "price": 25.50,
+  "imageUrl": "https://example.com/jollof.jpg",
+  "categoryId": 1
+}
+
+###
 DELETE http://localhost:5134/foods/1
+
+
+
+
+
+
 
 
 ###
 GET http://localhost:5134/categories
+
+###
+POST http://localhost:5134/categories
+Content-Type: application/json
+
+{
+  "name": "Jollof Rice",
+  "description": "Spicy Ghanaian rice dish",
+  "price": 25.50,
+  "imageUrl": "https://example.com/jollof.jpg",
+  "categoryId": 1
+}
+
+###
+PUT http://localhost:5134/categories/1
+Content-Type: application/json
+
+{
+  "name": "Jollof With Egg",
+  "description": "Spicy Ghanaian rice dish",
+  "price": 25.50,
+  "imageUrl": "https://example.com/jollof.jpg",
+  "categoryId": 1
+}
+
+###
+DELETE http://localhost:5134/categories/1
+
+
+
+
+
+###
+GET http://localhost:5134/users
+
+###
+POST http://localhost:5134/users
+Content-Type: application/json
+
+{
+  "username": "emma",
+  "email": "john@here.com",
+  "phoneNumber": "84928402",
+  "password": "hello",
+  "role": "user"
+}
+
+
+###
+PUT http://localhost:5134/users/1
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "email": "john@example.com",
+  "phoneNumber": "1234567890",
+  "password": "hashedpassword123",
+  "role": "admin"
+}
+
+###
+DELETE http://localhost:5134/users/1

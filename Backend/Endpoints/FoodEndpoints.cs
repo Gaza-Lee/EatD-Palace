@@ -9,7 +9,7 @@ public static class FoodEndpoints
 {
     const string GetFoodEndpointName = "GetFood";
 
-    public static async Task<RouteGroupBuilder> MapFoodEndpoints(this WebApplication app)
+    public static RouteGroupBuilder MapFoodEndpoints(this WebApplication app)
     {
         var foodGroup = app.MapGroup("foods").WithParameterValidation();
 
