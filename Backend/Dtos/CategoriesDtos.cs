@@ -14,3 +14,9 @@ public record UpdateCategoryDto
 (
     string Name
 );
+
+public record CategoryWithFoodsDto(
+    int Id,
+    string Name,
+    List<FoodDetailsDto> Foods
+);

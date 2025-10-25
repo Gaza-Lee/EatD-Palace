@@ -58,6 +58,35 @@ public static class FoodEndpoints
             await dbContext.Foods.Where(food => food.Id == id).ExecuteDeleteAsync();
             return Results.NoContent();
         });
+
+
+        //POST /foods/bulk
+        foodGroup.MapPost("/bulk", async (RestaurantDbContext dbContext, List<CreateFoodDto> newfoods) =>
+        {
+            if (newfoods == null || !newfoods.Any())
+                return Results.BadRequest("No food items");
+
+            //Validate categories exist
+            var categoryIds = newfoods.Select(food => food.CategoryId).Distinct().ToList();
+            var existingCategoryIds = await dbContext.Categories.Where(category => categoryIds.Contains(category.Id))
+                .Select(category => category.Id).ToListAsync();
+
+            var invalidCategories = categoryIds.Except(existingCategoryIds).ToList();
+            if (invalidCategories.Any())
+                return Results.BadRequest($"Invalid Category IDs: {string.Join(",", invalidCategories)}");
+
+            var foods = newfoods.Select(food => food.ToFoodEntity()).ToList();
+
+            await dbContext.Foods.AddRangeAsync(foods);
+            await dbContext.SaveChangesAsync();
+
+            var createdDtos = foods.Select(food => food.ToFoodDetailsDto()).ToList();
+            return Results.Ok(new
+            {
+                Message = $"{foods.Count} food items added successfully.",
+                Foods = createdDtos
+            });
+        });
         return foodGroup;
     }
 }

@@ -21,4 +21,12 @@ public static class CategoryMapping
             Name = updateCategory.Name,
         };
     }
+
+   public static CategoryWithFoodsDto ToCategoryWithFoodsDto(this Category category) =>
+    new(
+        category.Id,
+        category.Name,
+        category.Foods?.Select(f => f.ToFoodDetailsDto()).ToList() ?? []
+    );
+
 }

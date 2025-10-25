@@ -16,8 +16,14 @@ public static class CategoryEndpoints
 
         //GET /categories
         categoryGroup.MapGet("/", async (RestaurantDbContext dbContext) =>
-            await dbContext.Categories.Select(category => category.ToCategoryDto())
-            .AsNoTracking().ToListAsync());
+            await dbContext.Categories
+                .Include(foodsInCategory => foodsInCategory.Foods)
+                .Select(category => category.ToCategoryWithFoodsDto())
+                .AsNoTracking().ToListAsync());
+
+        //GET /categorysummarry
+        categoryGroup.MapGet("/categorysummary", async (RestaurantDbContext dbContext) =>
+        await dbContext.Categories.Select(categories => categories.ToCategoryDto()).AsNoTracking().ToListAsync());
 
         //GET /id (Single category)
         categoryGroup.MapGet("/{id}", async (RestaurantDbContext dbContext, int id) =>

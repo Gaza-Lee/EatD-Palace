@@ -20,7 +20,7 @@ Content-Type: application/json
   "name": "Jollof With Egg",
   "description": "Spicy Ghanaian rice dish",
   "price": 25.50,
-  "imageUrl": "https://example.com/jollof.jpg",
+  "imageUrl": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fflawlessfood.co.uk%2Fwp-content%2Fuploads%2F2023%2F01%2FJollof-Rice-02.jpg&f=1&nofb=1&ipt=939fb66e4db4edf3a16476eb37a7fc73abf9cea337ec457d2e1a9b6055b5ba68",
   "categoryId": 1
 }
 
@@ -108,10 +108,26 @@ DELETE http://localhost:5134/users/1
 
 
 ###
-GET http://localhost:5134/auth/login
+POST  http://localhost:5134/auth/login
 Content-Type: application/json
 
 {
   "userPhoneOrEmail": "john@example.com",
   "password": "hashedpassword123"
 }
+
+
+###
+POST  http://localhost:5134/auth/register
+Content-Type: application/json
+
+{
+  "username": "Smart",
+  "email": "smart@example.com",
+  "phoneNumber": "899302384",
+  "password": "hashedpassword123",
+  "role": "admin"
+}
+
+####
+GET  http://localhost:5134/auth/me/1

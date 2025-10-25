@@ -1,0 +1,220 @@
+### Bulk add foods
+POST  http://localhost:5134/foods/bulk
+Content-Type: application/json
+
+[
+  {
+    "name": "Special Fufu",
+    "description": "Authentic pounded cassava and plantain served with choice of soup and meat. Choose what soup, meat, and many more extras in the cart",
+    "price": 45.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/fufu1.jpg",
+    "categoryId": 1
+  },
+  {
+    "name": "Jollof Rice",
+    "description": "Flavorful rice cooked in a rich tomato sauce, served with your choice of chicken, beef, or fish. Accompanied by a side of fried plantains.",
+    "price": 40.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/friedrice1.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Banku and Tilapia",
+    "description": "Fermented corn and cassava dough cooked to perfection, served with grilled tilapia and spicy pepper sauce.",
+    "price": 35.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/bankuandtilapia.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Kenkey",
+    "description": "Steamed fermented corn dough served with fried fish and a spicy sauce. A traditional favorite!",
+    "price": 30.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/kenkey.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Rice Balls",
+    "description": "Soft rice balls served with a choice of groundnut soup or light soup, perfect for a hearty meal.",
+    "price": 38.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/riceballs.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Eba",
+    "description": "Cassava dough served with a rich egusi or vegetable soup, offering a delightful taste of Ghana.",
+    "price": 42.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/eba.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Tuo Zaafi",
+    "description": "A traditional northern dish made from corn or millet, served with a spicy vegetable soup and your choice of meat.",
+    "price": 50.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/tuozafi.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Ampesi",
+    "description": "Boiled yam or plantain served with palava sauce, a delicious mix of vegetables and spices.",
+    "price": 32.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/ampesi.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Gari Fortor",
+    "description": "A savory dish made from gari (grated cassava) mixed with a spicy tomato sauce and served with fish or meat.",
+    "price": 36.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/garifortor.png",
+    "categoryId": 1
+  },
+  {
+    "name": "Ampesi with Groundnut Soup",
+    "description": "Boiled yam or plantain served with a rich groundnut soup, a comforting and filling meal.",
+    "price": 37.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/ampesiandgroundnut.png",
+    "categoryId": 1
+  },
+
+  // Desserts & Beverages (categoryId: 2)
+  {
+    "name": "Sobolo",
+    "description": "Refreshing hibiscus drink with ginger and natural spices. Served chilled with optional lime garnish.",
+    "price": 15.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/sobolo.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Kelewele",
+    "description": "Spicy fried plantain cubes seasoned with ginger, cayenne pepper, and salt. Perfect evening snack!",
+    "price": 20.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/kelewele.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Bofrot (Puff Puff)",
+    "description": "Golden brown deep-fried dough balls, lightly sweetened and perfect with your favorite beverage.",
+    "price": 18.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/bofrot.png",
+    "categoryId": 2
+  },
+  {
+    "name": "Asaana",
+    "description": "Traditional fermented corn drink with caramelized sugar and a hint of ginger. Refreshingly authentic!",
+    "price": 12.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/asaana.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Coconut Candy",
+    "description": "Sweet and chewy coconut treats made with fresh coconut, sugar, and a touch of vanilla.",
+    "price": 10.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/coconutcandy.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Fan Ice Cream",
+    "description": "Creamy vanilla ice cream in various flavors - vanilla, strawberry, and chocolate. A local favorite!",
+    "price": 8.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/fanice.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Kaklo",
+    "description": "Sweet plantain fritters made from overripe plantains, flour, and spices. Crispy outside, soft inside!",
+    "price": 22.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/kaklo.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Brukina",
+    "description": "Nutritious millet-based drink sweetened with sugar and enhanced with milk and groundnuts.",
+    "price": 14.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/brukina.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Nkate Cake",
+    "description": "Crunchy peanut brittle made with roasted peanuts and caramelized sugar. A sweet traditional treat!",
+    "price": 16.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/nkatecake.jpg",
+    "categoryId": 2
+  },
+  {
+    "name": "Fresh Fruit Salad",
+    "description": "Mix of fresh tropical fruits including pineapple, watermelon, pawpaw, and mango with optional cream.",
+    "price": 25.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/fruitsalad.jpg",
+    "categoryId": 2
+  },
+
+  // Appetizers (categoryId: 3)
+  {
+    "name": "Spring Rolls",
+    "description": "Crispy vegetable spring rolls filled with cabbage, carrots, and spices. Served with sweet chili sauce.",
+    "price": 25.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/springrolls.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Meat Pie",
+    "description": "Flaky golden pastry filled with seasoned minced meat, potatoes, and vegetables. Baked to perfection!",
+    "price": 18.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/meatpie.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Samosa",
+    "description": "Triangular fried pastry with savory filling of spiced potatoes, peas, and optional minced meat.",
+    "price": 20.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/samosa.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Chicken Wings",
+    "description": "Crispy fried chicken wings marinated in special spices. Choose from BBQ, spicy, or honey glazed.",
+    "price": 35.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/chickenwings.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Kebab",
+    "description": "Grilled meat skewers (beef, chicken, or goat) marinated in suya spice blend. Served with sliced onions.",
+    "price": 30.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/kebab.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Fish Rolls",
+    "description": "Crispy pastry rolls filled with seasoned fish, vegetables, and special herbs. A seafood lover's delight!",
+    "price": 22.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/fishrolls.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Gizzard Pepper Soup",
+    "description": "Spicy and aromatic soup with tender chicken gizzards, perfect as a starter or light meal.",
+    "price": 28.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/gizzardsoup.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Scotch Eggs",
+    "description": "Hard-boiled eggs wrapped in seasoned sausage meat, coated with breadcrumbs and deep-fried.",
+    "price": 24.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/scotcheggs.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Plantain Chips",
+    "description": "Thinly sliced and crispy fried plantain chips, lightly salted or spiced. Perfect for snacking!",
+    "price": 15.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/plantainchips.jpg",
+    "categoryId": 3
+  },
+  {
+    "name": "Chicken Satay",
+    "description": "Grilled chicken skewers marinated in coconut milk and spices, served with peanut sauce.",
+    "price": 32.00,
+    "imageUrl": "http://127.0.0.1:5500/src/assets/chickensatay.jpg",
+    "categoryId": 3
+  }
+]

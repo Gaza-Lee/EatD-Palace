@@ -8,7 +8,7 @@
 })();
 
 // Menu data
-const menuData = {
+ /* const menuData = {
   // Main Dishes
   mainDishes: [
     {
@@ -280,7 +280,7 @@ const menuData = {
       rating: "4.7 ⭐ (1.6k reviews)",
     },
   ]
-};
+}; */
 
 // Intersection Observer for scroll animations
 class ScrollAnimator {
@@ -463,7 +463,7 @@ class FoodCardDisplayManager {
 }
 
 // Initialize
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
   new ScrollAnimator();
   
   const sections = [
@@ -499,4 +499,88 @@ document.addEventListener("DOMContentLoaded", () => {
       section.initialCount
     );
   });
-});
+}); */
+
+const API_BASE_URL = "http://localhost:5134";
+
+async function loadMenuData() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/categories`);
+    if (!response.ok) throw new Error("Failed to fetch menu data");
+
+    const categories = await response.json();
+
+    // Initialize Scroll animations
+    new ScrollAnimator();
+
+    // Map backend category names
+    const categoryMapping = {
+      "Main Dishes": {
+        containerId: "menu-container",
+        moreBtnId: "view-more-btn",
+        lessBtnId: "view-less-btn"
+      },
+      "Desserts and Beverages": {
+        containerId: "dessert-container",
+        moreBtnId: "dessert-view-more-btn",
+        lessBtnId: "dessert-view-less-btn"
+      },
+      "Appetizers": {
+        containerId: "appetizer-container",
+        moreBtnId: "appetizer-view-more-btn",
+        lessBtnId: "appetizer-view-less-btn"
+      }
+    };
+
+    // Process each category from backend
+    categories.forEach((category) => {
+      const mapping = categoryMapping[category.name];
+      
+      if (mapping && document.getElementById(mapping.containerId)) {
+        // Transform the food data to match your existing card structure
+        const transformedFoods = (category.foods || []).map(food => ({
+          id: food.id,
+          name: food.name,
+          image: food.imageUrl,  // Backend uses 'imageUrl'
+          description: food.description,
+          price: `GH₵ ${food.price.toFixed(2)}`,  // Format price with currency
+          rating: food.averageRating > 0 
+            ? `${food.averageRating.toFixed(1)} ⭐` 
+            : "No ratings yet"
+        }));
+
+        // Initialize the display manager for this category
+        new FoodCardDisplayManager(
+          mapping.containerId,
+          transformedFoods,
+          mapping.moreBtnId,
+          mapping.lessBtnId,
+          6
+        );
+        
+        console.log(`Loaded ${transformedFoods.length} items for ${category.name}`);
+      } else {
+        console.warn(`No mapping found for category: "${category.name}"`);
+      }
+    });
+
+  } catch (err) {
+    console.error("Error loading menu data:", err);
+    
+    // Show error message in containers
+    const containers = ['menu-container', 'dessert-container', 'appetizer-container'];
+    containers.forEach(containerId => {
+      const container = document.getElementById(containerId);
+      if (container) {
+        container.innerHTML = `
+          <div class="error-message" style="padding: 20px; text-align: center; color: #666;">
+            <iconify-icon icon="mdi:alert-circle-outline" style="font-size: 48px; color: #ff6b6b;"></iconify-icon>
+            <p>Unable to load menu items. Please refresh the page or try again later.</p>
+          </div>
+        `;
+      }
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadMenuData);

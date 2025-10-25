@@ -21,11 +21,14 @@ public static class AuthEndpoints
             [FromBody] CreateUserDto newUser) =>
         {
             // Check if user already exists
-            var existingUser = await dbContext.Users.FirstOrDefaultAsync(u =>
-                u.Email == newUser.Email || u.PhoneNumber == newUser.PhoneNumber);
+            var emailExists = await dbContext.Users.AnyAsync(u => u.Email == newUser.Email);
+            var phoneExists = await dbContext.Users.AnyAsync(u => u.PhoneNumber == newUser.PhoneNumber);
 
-            if (existingUser is not null)
-                return Results.BadRequest("User with the same email or phone number already exists.");
+            if (emailExists)
+                return Results.BadRequest("Email already exists.");
+
+            if (phoneExists)
+                return Results.BadRequest("Phone number already exists.");
 
             // Hash the password
             var hashedPassword = passwordService.HashPassword(newUser.Password);
@@ -87,7 +90,7 @@ public static class AuthEndpoints
             int id,
             [FromBody] UpdateProfileDto updateProfile,
             RestaurantDbContext dbContext,
-            PasswordService passwordService) =>
+            IPasswordService passwordService) =>
         {
             var user = await dbContext.Users.FindAsync(id);
             if (user is null)
