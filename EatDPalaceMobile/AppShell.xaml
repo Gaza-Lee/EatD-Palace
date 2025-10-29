@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="EatDPalaceMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:generalViews="clr-namespace:EatDPalaceMobile.Views.GeneralPages"
+    xmlns:userOnlyViews="clr-namespace:EatDPalaceMobile.Views.UserOnly"
+    xmlns:icons="clr-namespace:EatDPalaceMobile.Helpers"
+    Title="EatDPalaceMobile"
+    xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.TabBarBackgroundColor="{StaticResource PrimaryLight100}"
+    Shell.TabBarUnselectedColor="{StaticResource White}">
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" />
+    </Shell.Behaviors>
+    <ShellContent
+        Title="Landing"
+        ContentTemplate="{DataTemplate generalViews:LandingPage}"
+        Route="MainPage" />
+
+    <!--User-->
+    <TabBar Route="UserMain">
+        <!--Home Page-->
+        <ShellContent 
+            Title="Home"
+            ContentTemplate="{DataTemplate userOnlyViews:UserHomePage}"
+            Route="home">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialIcon"
+                                 Glyph="{x:Static icons:Icons.HomeIcon}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!--Menu Page-->
+        <ShellContent 
+                Title="Menu"
+                ContentTemplate="{DataTemplate userOnlyViews:MenuPage}"
+                Route="home">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialIcon"
+                         Glyph="{x:Static icons:Icons.MenuIcon}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <!--Reservation Page-->
+        <ShellContent 
+                Title="Reservations"
+                ContentTemplate="{DataTemplate userOnlyViews:ReservationPage}"
+                Route="home">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialIcon"
+                         Glyph="{x:Static icons:Icons.ReservationsIcon}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+
+
+</Shell>

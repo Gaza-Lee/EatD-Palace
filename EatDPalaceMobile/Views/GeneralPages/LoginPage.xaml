@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EatDPalaceMobile.Views.GeneralPages.LoginPage"
+             Title="LoginPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        
+        <!--Background Image-->
+        <Image Source="bgimg4.jpg" 
+               Aspect="AspectFill"
+               Opacity="0.8"/>
+        <BoxView BackgroundColor="#000"
+                 Opacity="0.3"/>
+
+        <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,*"
+              Margin="10,30"
+              RowSpacing="30">
+            <!--Login Details-->
+            <VerticalStackLayout Grid.Row="0">
+                <Label Text="Login" 
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       FontFamily="MontserratBold"/>
+                <Label Text="Welcome back!! You've been missed"
+                       Margin="0,0,0, 50"
+                       FontSize="16"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1">
+                <Label Text="Email/Phone Number" 
+                       FontAttributes="Bold"/>
+                <Entry Placeholder="Enter your Email or Phone Number"
+                       TextColor="#fff"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="2">
+                <Label Text="Enter Password"/>
+                <Entry Placeholder="Password" 
+                       TextColor="#fff"
+                       FontAttributes="Bold"/>
+            </VerticalStackLayout>
+
+            <Button Text="Login"
+                    HorizontalOptions="Center"
+                    Grid.Row="4"
+                    CornerRadius="20"
+                    Padding="40,0"
+                    FontSize="20" 
+                    Command="{Binding LoginCommand}"/>
+
+            <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Center"
+                                   Spacing="5">
+                <Border VerticalOptions="Center"
+                        HeightRequest="5"
+                        WidthRequest="150"
+                        Background="#fff"/>
+                <Label Text="Or With" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+                <Border VerticalOptions="Center"
+                        HeightRequest="5"
+                        WidthRequest="150"
+                        Background="#fff"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="6"
+                                   HorizontalOptions="Center"
+                                   Spacing="50">
+                <Border Padding="20,5"
+                        StrokeShape="RoundRectangle 100"
+                        BackgroundColor="#33F7F7F7">
+                    <Border.Shadow>
+                        <Shadow Offset="5,5"
+                                Brush="Gray"/>
+                    </Border.Shadow>
+                    <Label Text="Facebook" 
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="25"/>
+                </Border>
+                <Border Padding="20,5"
+                        StrokeShape="RoundRectangle 100"
+                        BackgroundColor="#33f7f7f7">
+                    <Border.Shadow>
+                        <Shadow Brush="Gray"
+                                Offset="5,5"/>
+                    </Border.Shadow>
+                    <Label Text="Google"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="25"/>
+                </Border>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="7" VerticalOptions="End"
+                                   HorizontalOptions="Center"
+                                   Spacing="5">
+                <Label Text="Do not have an Account?"/>
+                <Label Text="Create Account" 
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Gray950}"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToCreateAccountCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

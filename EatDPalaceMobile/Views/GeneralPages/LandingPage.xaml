@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:categories ="clr-namespace:EatDPalaceMobile.Models.Categories"
+             x:Class="EatDPalaceMobile.Views.GeneralPages.LandingPage"
+             Title="LandingPage"
+             Shell.NavBarIsVisible="False">
+    <Grid BackgroundColor="{StaticResource PrimaryLight100}">
+        <Image Source="bgimg1.jpg" 
+               Aspect="AspectFill"
+               ZIndex="-1"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               Grid.RowSpan="6"/>
+        <BoxView BackgroundColor="#000"
+                 Opacity="0.2"
+                 Grid.RowSpan="6"/>
+        <Grid RowDefinitions="auto,auto,auto,*,auto,auto">
+            
+            <HorizontalStackLayout Grid.Row="0"
+                               Spacing="5"
+                               VerticalOptions="Start"
+                               Margin="5">
+                <Border StrokeShape="RoundRectangle 100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    WidthRequest="45"
+                    HeightRequest="45">
+                    <Image Source="logo1.png"
+                       Aspect="AspectFill"/>
+                </Border>
+                <Label Text="EatD Palace" 
+                   FontSize="Large"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontFamily="FinlandicaRegular"/>
+            </HorizontalStackLayout>
+            <Border Grid.Row="0"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 100"
+                Margin="10,15"
+                Padding="10,2"
+                ZIndex="100">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                        Opacity="0.5"
+                        Offset="5,5"/>
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToLoginPageCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="Skip"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   CharacterSpacing="2"
+                   Padding="0"/>
+            </Border>
+
+            <Label Text="No need to approach the desk!!! Just scan QR to order from the app or web"
+               Grid.Row="1"
+               VerticalOptions="Start"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold"
+               TextColor="Red"
+               Margin="5"/>
+            <Label Text="Enjoy the best healthy and delicious food"
+               Grid.Row="2"
+               FontAttributes="Bold"
+               FontSize="26"
+               HorizontalTextAlignment="Center"
+               FontFamily="FinlandicaRegular"
+               Margin="10,0"/>
+
+            <CollectionView ItemsSource="{Binding CarouselItems}"
+                        Grid.Row="3"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="3"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="categories:CarouselItem">
+                        <Border Margin="5"
+                            StrokeShape="RoundRectangle 10"
+                            StrokeThickness="0"
+                            WidthRequest="400"
+                            HeightRequest="380">
+                            <Image Source="{Binding ImageUrl}"
+                               Aspect="AspectFill"/>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Border Grid.Row="4">
+                <VerticalStackLayout>
+                    <Label></Label>
+                    <Border></Border>
+                </VerticalStackLayout>
+            </Border>
+            <Grid Grid.Row="5">
+                <Border></Border>
+                <Border></Border>
+                <Border></Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

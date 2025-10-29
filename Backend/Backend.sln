@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend.csproj", "{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatDPalaceMobile", "..\EatDPalaceMobile\EatDPalaceMobile.csproj", "{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,11 @@ Global
 		{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3485CEC-EC66-450C-AE8B-DB488BA91B6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
